@@ -1,0 +1,1439 @@
+/* ==========================================================
+   Cafe HINOKI — スタイルシート（モバイルファースト）
+   ブレークポイント: 600px / 900px
+   ========================================================== */
+
+:root {
+  /* 配色：4色（ひのきの白・ひのきのベージュ・セージ・こげ茶）
+     ほかのお店に使うときは、まずこの4色を差しかえる
+     文字色は「こげ茶・薄いこげ茶・セージ・ひのきの白（写真や濃い色の上）」の4つだけ */
+  --paper: #f7f3ec;   /* 地の色 */
+  --wood: #e3d6c0;    /* 面の色（写真の後ろのずらし、帯） */
+  --sage: #4f5d49;    /* アクセント（ボタン・リンク・小さな強調） */
+  --ink: #3a3128;     /* 文字 */
+
+  /* 文字・罫線は文字色を薄めて作る（白・ベージュの上でコントラスト比4.5:1以上） */
+  --ink-2: rgba(58, 49, 40, 0.78);
+  --line: rgba(58, 49, 40, 0.18);
+
+  /* フォント */
+  --f-en: "Cormorant Garamond", "Times New Roman", serif;
+  --f-min: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --f-body: "Zen Kaku Gothic New", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  --f-script: "Allura", "Cormorant Garamond", "Times New Roman", serif; /* cursive だとWindowsでComic Sansになるため */
+
+
+  --header-h: 64px;
+  --jump-gap: 32px; /* ナビで飛んだとき、ヘッダーと中身のあいだに残す余白 */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ---------- 基本 ---------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-h);
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  font-family: var(--f-body);
+  font-size: 1rem;
+  line-height: 1.9;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  background: var(--paper);
+  line-break: strict;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+ul, ol {
+  list-style: none;
+}
+a {
+  color: inherit;
+  -webkit-tap-highlight-color: transparent; /* iOSの灰色の四角を消し、押したときの見た目はCSSでそろえる */
+}
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+h1, h2, h3, .hero-copy, .time-item {
+  font-feature-settings: "palt" 1;
+}
+/* 文節の途中で改行しない：<wbr> を入れた所だけで折り返す（Safari・Firefoxでも同じ結果）
+   はみ出しそうなときだけ、最後の手段で途中でも折り返す */
+h1, h2, h3, .hero-copy, .lead, .time-item, .menu-name, .space-seats, .status, .footer-info {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+/* 本文：行末に1〜2文字だけ残らないようにする（長い文章はふつうの日本語の折り返し。
+   折りたくない短い言葉だけ .nobr で守る） */
+p, li, dd, figcaption {
+  text-wrap: pretty;
+}
+:focus-visible {
+  outline: 2px solid var(--sage);
+  outline-offset: 3px;
+}
+/* ページ内リンクの移動先（フォーカスを受けても枠は出さない） */
+section[tabindex="-1"]:focus,
+main[tabindex="-1"]:focus,
+#top:focus {
+  outline: none;
+}
+/* 途中で折り返したくない短い言葉（ゆで卵・日替わり など） */
+.nobr {
+  white-space: nowrap;
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 200;
+  padding: 10px 18px;
+  background: var(--sage);
+  color: var(--paper);
+}
+.skip-link:focus {
+  top: 12px;
+}
+
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.section {
+  padding: 80px 0;
+}
+
+/* ---------- 見出し・文章 ---------- */
+.title {
+  font-family: var(--f-min);
+  font-size: clamp(1.6rem, 4.6vw, 2.25rem);
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.08em;
+  margin-bottom: 28px;
+}
+.eyebrow {
+  margin-bottom: 8px;
+  font-family: var(--f-en);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--sage);
+}
+/* 見出しの上に添える、大きな筆記体（飾りなので読み上げない） */
+.script-label {
+  margin-bottom: -0.15em;
+  font-family: var(--f-script);
+  font-size: clamp(3rem, 9vw, 5rem);
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--sage);
+}
+.title--center,
+.lead--center {
+  text-align: center;
+}
+.title--light {
+  color: var(--paper);
+}
+.lead {
+  color: var(--ink-2);
+  margin: -12px 0 48px;
+}
+
+/* ---------- ボタン（リンクだけがホバーで変わる） ---------- */
+.btn {
+  display: inline-block;
+  min-width: 260px;
+  padding: 16px 32px;
+  border: 1px solid var(--ink);
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.btn:hover,
+.btn:active {
+  background: var(--sage);
+  border-color: var(--sage);
+  color: var(--paper);
+}
+.center-link {
+  margin-top: 56px;
+  text-align: center;
+}
+.center-link--pair {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px 24px;
+}
+.center-link--pair .btn {
+  min-width: min(300px, 100%); /* 並んだボタンの幅をそろえる（狭い画面でははみ出さない） */
+}
+/* 戻るボタン：矢印の向きでも「戻る」ことがわかるように（線で描くので読み上げられない） */
+.btn--back::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 0.9em;
+  border-left: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: translateY(-0.15em) rotate(45deg);
+}
+
+/* ---------- ページの上へ戻るボタン ---------- */
+.to-top {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 90;
+  width: 56px; /* 指で押しやすい大きさ */
+  height: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(58, 49, 40, 0.12);
+  /* 上の方にいるときは隠す。visibility も切るので、見えないボタンにキーボードで移動しない */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s, background-color 0.3s ease, color 0.3s ease;
+}
+.to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.to-top-arrow {
+  width: 10px;
+  height: 10px;
+  margin-top: 4px;
+  border-top: 2px solid currentColor;
+  border-left: 2px solid currentColor;
+  transform: rotate(45deg);
+}
+.to-top:hover,
+.to-top:active {
+  background: var(--sage);
+  border-color: var(--sage);
+  color: var(--paper);
+}
+.to-top:focus-visible {
+  outline-offset: 3px;
+}
+
+/* ---------- パンくずリスト ---------- */
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline; /* 「HOME」と「メニュー」の文字の高さをそろえる */
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 12px 20px 0;
+  font-size: 0.875rem;
+  color: var(--ink-2);
+}
+.breadcrumb li + li::before {
+  content: "／";
+  margin: 0 0.6em;
+}
+.breadcrumb a {
+  display: inline-block;
+  padding: 6px 0;
+  text-underline-offset: 4px;
+}
+
+/* ---------- 写真を額縁のように見せる（写真のまわりに余白と細い線） ---------- */
+.frame-photo {
+  padding: 12px;
+  border: 1px solid rgba(58, 49, 40, 0.35);
+}
+
+/* ---------- ヘッダー ---------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--paper); /* 透けると下の文字がヘッダーに重なって見えるので、不透明に */
+  border-bottom: 1px solid var(--line);
+}
+.header-inner {
+  max-width: 1280px;
+  height: var(--header-h);
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-family: var(--f-en);
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+.logo a {
+  display: block;
+  padding: 6px 0;
+  text-decoration: none;
+}
+.menu-btn {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px; /* 線の右端を、下のメニューの文字の右端（20px）にそろえる */
+}
+.menu-btn-line,
+.menu-btn-line::before,
+.menu-btn-line::after {
+  position: absolute;
+  left: 10px;
+  width: 24px;
+  height: 2px;
+  background: var(--ink);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.menu-btn-line {
+  top: calc(50% - 1px); /* 2pxの線をボタンのちょうど真ん中に */
+}
+.menu-btn-line::before,
+.menu-btn-line::after {
+  content: "";
+  left: 0;
+}
+.menu-btn-line::before {
+  top: -7px;
+}
+.menu-btn-line::after {
+  top: 7px;
+}
+.menu-btn[aria-expanded="true"] .menu-btn-line {
+  background: transparent;
+}
+.menu-btn[aria-expanded="true"] .menu-btn-line::before {
+  transform: translateY(7px) rotate(45deg);
+}
+.menu-btn[aria-expanded="true"] .menu-btn-line::after {
+  transform: translateY(-7px) rotate(-45deg);
+}
+.nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  max-height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  transition: max-height 0.4s ease, visibility 0.4s;
+}
+.nav.is-open {
+  max-height: 480px;
+  visibility: visible;
+}
+.nav-list a {
+  display: block;
+  padding: 14px 20px; /* ロゴと同じ左右20pxにそろえる */
+  font-family: var(--f-en);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  border-top: 1px solid var(--line);
+  transition: background-color 0.2s ease;
+}
+.nav-list--left li:first-child a {
+  border-top: none; /* ヘッダーの下線と重なって2本にならないように */
+}
+.nav-list a:hover,
+.nav-list a:active {
+  background: var(--wood);
+}
+/* 今いるページ：色だけでなく左の線でも示す。線は行の内側に収める */
+.nav-list a[aria-current="page"],
+.nav-list a.is-here {
+  box-shadow: inset 3px 0 0 var(--sage);
+}
+.nav.has-here a[aria-current="page"] {
+  box-shadow: none;
+}
+/* nav は overflow: hidden なので、フォーカスの枠を内側に描いて切れないようにする */
+.nav-list a:focus-visible {
+  outline-offset: -4px;
+}
+
+/* ---------- トップのスライド（デザインカンプどおり） ---------- */
+.hero-stage {
+  position: relative;
+  height: min(76svh, 600px);
+  min-height: 480px;
+  overflow: hidden;
+  background: var(--ink);
+}
+/* 切り替え：新しい写真を、前の写真の「上に」重ねてふわっと出す
+   （両方を同時に薄くすると、途中で後ろの暗い色が透けてしまうため） */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 1.6s ease-in-out;
+}
+.hero-slide.is-prev {
+  z-index: 1;
+  opacity: 1;
+  transition: none;
+}
+.hero-slide.is-active {
+  z-index: 2;
+  opacity: 1;
+}
+.hero.is-init .hero-slide,
+.hero.is-init .hero-text {
+  transition: none; /* 開いたときは、今の時間帯のスライドをいきなり表示 */
+}
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* 写真がゆっくり少しだけ寄る（一時停止で止まる・動きを減らす設定では動かない） */
+.hero-slide.is-active img,
+.hero-slide.is-prev img {
+  animation: hero-zoom 8s ease-out forwards;
+}
+.hero.is-paused .hero-slide img {
+  animation-play-state: paused;
+}
+@keyframes hero-zoom {
+  from { transform: scale(1.06); }
+  to { transform: scale(1); }
+}
+/* 写真の明るさは残し、文字の後ろだけを暗くして読みやすくする */
+.hero-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 75% 50% at 50% 34%, rgba(30, 24, 18, 0.56) 0%, rgba(30, 24, 18, 0.3) 55%, rgba(30, 24, 18, 0) 100%),
+    linear-gradient(to top, rgba(30, 24, 18, 0.4) 0%, rgba(30, 24, 18, 0) 40%);
+}
+.hero-text {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  color: var(--paper);
+  opacity: 0;
+  transition: opacity 0.9s ease 0.7s; /* 写真が出てから、少し遅れて文字 */
+}
+.hero-slide.is-active .hero-text {
+  opacity: 1;
+}
+.hero-slide.is-prev .hero-text {
+  opacity: 0;
+  transition: opacity 0.4s ease; /* 前の文字は先に消して、新旧の文字が重ならないように */
+}
+.hero-lead {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 22%;
+  z-index: 2;
+  padding: 0 56px; /* 左右の矢印にかからないように */
+  text-align: center;
+}
+.hero-copy {
+  font-family: var(--f-body);
+  font-size: clamp(1.35rem, 4.4vw, 2rem);
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: 0.1em;
+  text-shadow: 0 1px 12px rgba(30, 24, 18, 0.45);
+}
+.hero-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 4px 6px 6px;
+  border-bottom: 1px solid currentColor;
+  font-family: var(--f-en);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  text-shadow: 0 1px 12px rgba(30, 24, 18, 0.45);
+  transition: background-color 0.3s ease;
+}
+.hero-link:hover,
+.hero-link:active {
+  background: rgba(247, 243, 236, 0.16);
+}
+/* 大きな筆記体：左寄りで写真に大きくかける。飾りなので押せない・読み上げない */
+.hero-script {
+  position: absolute;
+  left: 50%;
+  bottom: 4%;
+  transform: translateX(-50%); /* 上の文字と同じく中央にそろえる */
+  z-index: 1;
+  font-family: var(--f-script);
+  font-size: clamp(5rem, 21vw, 15rem);
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  text-shadow: 0 4px 24px rgba(30, 24, 18, 0.35);
+}
+/* 左右の矢印（指で押しやすい48px） */
+.hero-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  width: 48px;
+  height: 48px;
+  margin-top: -24px;
+}
+.hero-arrow--prev {
+  left: 4px;
+}
+.hero-arrow--next {
+  right: 4px;
+}
+.hero-arrow::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  border-top: 1.5px solid var(--paper);
+  border-left: 1.5px solid var(--paper);
+  filter: drop-shadow(0 0 3px rgba(30, 24, 18, 0.6));
+}
+.hero-arrow--prev::before {
+  margin: -8px 0 0 -4px;
+  transform: rotate(-45deg);
+}
+.hero-arrow--next::before {
+  margin: -8px 0 0 -12px;
+  transform: rotate(135deg);
+}
+.hero-arrow:hover,
+.hero-arrow:active {
+  background: rgba(247, 243, 236, 0.14);
+}
+.hero-stage :focus-visible {
+  outline-color: var(--paper);
+  outline-offset: -3px; /* ボタンの枠の中に収める */
+}
+/* 写真の下の点と一時停止（カンプどおり写真の外に） */
+.hero-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 0;
+}
+.hero-dot {
+  position: relative;
+  width: 32px;
+  height: 32px;
+}
+/* 今のスライドは塗りつぶし、ほかは輪。色だけでなく形でも区別できる */
+.hero-dot::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink-2);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+.hero-dot[aria-current="true"]::before {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.hero-dot:hover::before {
+  border-color: var(--ink);
+}
+.hero-pause {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  margin-left: 12px;
+}
+.hero-pause::before,
+.hero-pause::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  width: 3px;
+  height: 12px;
+  background: var(--ink);
+}
+.hero-pause::before {
+  left: 11px;
+}
+.hero-pause::after {
+  left: 18px;
+}
+.hero-pause[aria-pressed="true"]::before {
+  left: 12px;
+  width: 0;
+  height: 0;
+  background: none;
+  border-style: solid;
+  border-width: 6px 0 6px 10px;
+  border-color: transparent transparent transparent var(--ink);
+}
+.hero-pause[aria-pressed="true"]::after {
+  display: none;
+}
+.hero-controls :focus-visible {
+  outline-offset: -2px; /* 32pxのボタンの中に収める */
+}
+
+/* ---------- 今日の営業状況 ---------- */
+.status {
+  padding: 14px 20px;
+  background: var(--wood);
+  text-align: center;
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+.status[data-state="open"]::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--sage);
+  vertical-align: 0.1em;
+}
+
+/* ---------- コンセプト ---------- */
+.about-inner {
+  display: grid;
+  gap: 48px;
+}
+.about-photo img {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  width: 100%;
+}
+.about-text p + p {
+  margin-top: 1em;
+}
+.about-sign {
+  margin-top: 28px !important;
+  font-family: var(--f-min);
+  color: var(--ink-2);
+}
+
+/* ---------- 看板メニュー ---------- */
+.signature-inner {
+  display: grid;
+  gap: 40px;
+}
+.signature-photo img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+.signature-body > p + p {
+  margin-top: 1em;
+}
+.signature-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  margin-top: 28px !important;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  font-family: var(--f-min);
+  font-size: 1.25rem;
+}
+.signature-price span {
+  font-family: var(--f-body);
+  font-size: 1.125rem;
+  white-space: nowrap;
+}
+.signature-note {
+  margin-bottom: 32px;
+  color: var(--ink-2);
+  font-size: 0.9rem;
+}
+
+/* ---------- 一日の三つの時間 ---------- */
+.times {
+  border-top: 1px solid var(--line);
+}
+.time-row {
+  display: grid;
+  gap: 24px;
+}
+.time-row + .time-row {
+  margin-top: 64px;
+}
+.time-photo img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+.time-range {
+  font-family: var(--f-en);
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--sage);
+}
+.time-title {
+  font-family: var(--f-min);
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+.time-now {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 2px 12px;
+  background: var(--sage);
+  color: var(--paper);
+  font-size: 0.875rem;
+}
+.time-now[hidden] {
+  display: none;
+}
+.time-body > p:not(.time-range):not(.time-now) {
+  color: var(--ink-2);
+}
+.time-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-family: var(--f-min);
+  color: var(--ink) !important;
+}
+.time-item span {
+  font-family: var(--f-body);
+  white-space: nowrap;
+}
+
+/* ---------- 珈琲のこだわり ---------- */
+.coffee {
+  position: relative;
+  padding: 120px 0;
+  overflow: hidden;
+  color: var(--paper);
+}
+.coffee-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.coffee::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgba(30, 24, 18, 0.62);
+}
+.coffee-inner {
+  position: relative;
+  z-index: 2;
+}
+.coffee-text {
+  max-width: 520px;
+}
+.coffee-text p + p {
+  margin-top: 1em;
+}
+
+/* ---------- 店内（セージ色の面） ---------- */
+.space {
+  background: var(--sage);
+  color: var(--paper);
+}
+.space .script-label {
+  color: var(--paper);
+}
+.space :focus-visible {
+  outline-color: var(--paper);
+}
+.space-grid {
+  display: grid;
+  gap: 32px;
+}
+.space-item img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+.space-item figcaption {
+  margin-top: 12px;
+  font-size: 0.9rem;
+}
+.space-item figcaption b {
+  display: block;
+  font-family: var(--f-min);
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+.space-seats {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(247, 243, 236, 0.35);
+  font-size: 0.9rem;
+}
+
+/* ---------- #cafehinoki（投稿のイメージ） ---------- */
+.insta-title {
+  font-family: var(--f-en);
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.insta-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+.insta-grid li {
+  overflow: hidden;
+}
+.insta-grid img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease);
+}
+.insta-grid li:hover img {
+  transform: scale(1.04);
+}
+.insta-note {
+  margin-top: 20px;
+  text-align: center;
+  color: var(--ink-2);
+  font-size: 0.875rem;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- お知らせ ---------- */
+.news {
+  background: var(--wood);
+}
+.news-list {
+  border-top: 1px solid var(--line);
+}
+.news-list li {
+  display: grid;
+  gap: 4px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+.news-list time {
+  font-family: var(--f-en);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--sage);
+}
+
+/* ---------- アクセス ---------- */
+.access-photo img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  object-position: 25% 50%; /* スマホでは扉のあたりを中心に */
+}
+.access-mark {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 16px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  font-family: var(--f-min);
+  font-size: 1.1rem;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.access-mark-label {
+  padding: 2px 12px;
+  background: var(--sage);
+  color: var(--paper);
+  font-family: var(--f-body);
+  font-size: 0.875rem;
+  letter-spacing: 0.12em;
+}
+.info {
+  border-top: 1px solid var(--line);
+}
+.info div {
+  display: grid;
+  grid-template-columns: 6em 1fr;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--line);
+}
+.info dt {
+  color: var(--ink-2);
+}
+
+/* ---------- フッター ---------- */
+.footer {
+  padding: 64px 0 96px; /* 右下の「上へ」ボタンが、いちばん下の文字に重ならないように */
+  background: var(--ink);
+  color: var(--paper);
+}
+.footer-inner {
+  display: grid;
+  gap: 20px;
+}
+.footer-logo {
+  font-family: var(--f-en);
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+.footer-info {
+  font-size: 0.9rem;
+}
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+  font-family: var(--f-en);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+.footer-nav a {
+  text-decoration: none;
+}
+.footer-nav a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.footer-note,
+.footer-copy {
+  font-size: 0.875rem;
+  color: rgba(247, 243, 236, 0.8);
+}
+.footer-copy small {
+  font-size: inherit; /* small で一段小さくならないように */
+}
+.footer :focus-visible {
+  outline-color: var(--paper);
+}
+
+/* ---------- 下層ページの見出し ---------- */
+.page-head {
+  position: relative;
+  height: 260px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  color: var(--paper);
+  text-align: center;
+}
+.page-head img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.page-head::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 24, 18, 0.5);
+}
+.page-head-text {
+  position: relative;
+  z-index: 1;
+}
+.page-head-en {
+  font-family: var(--f-script);
+  font-size: clamp(3.5rem, 12vw, 5.5rem);
+  line-height: 1;
+}
+.page-head h1 {
+  margin-top: 8px;
+  font-family: var(--f-min);
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+}
+
+/* ---------- メニューページ ---------- */
+/* メニューの種類へ飛ぶボタン：パンくずと見分けがつくよう、枠で囲んだボタンに。↓で「このページの下へ」と示す */
+.menu-jump {
+  /* スマホ：1段目に2つ、2段目に3つ。幅をそろえてガタつかないように */
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+  max-width: 600px; /* タブレットでボタンが横に伸びすぎないように */
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 32px 20px 0;
+}
+.menu-jump + .section {
+  padding-top: 64px; /* ボタンのすぐ下から、間延びせずに始める */
+}
+.menu-jump a {
+  grid-column: span 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px; /* 指で押しやすい高さ */
+  padding: 8px 4px;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  border: 1px solid rgba(58, 49, 40, 0.35);
+  background: var(--paper);
+  font-family: var(--f-min);
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.menu-jump a:nth-child(n+3) {
+  grid-column: span 2;
+}
+@media (max-width: 374px) {
+  .menu-jump a {
+    gap: 4px;
+    font-size: 0.875rem; /* 小さいスマホでも文字がはみ出さないように（14pxより小さくはしない） */
+    letter-spacing: 0;
+  }
+}
+.menu-jump a::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+}
+.menu-jump a:hover,
+.menu-jump a:active {
+  background: var(--sage);
+  border-color: var(--sage);
+  color: var(--paper);
+}
+.menu-jump a:focus-visible {
+  outline-offset: 3px;
+}
+.menu-block {
+  display: grid;
+  gap: 32px;
+}
+.menu-block + .menu-block {
+  margin-top: 80px;
+  padding-top: 80px;
+  border-top: 1px solid var(--line);
+}
+.menu-block .title {
+  margin-bottom: 8px;
+}
+.menu-note {
+  color: var(--ink-2);
+  font-size: 0.9rem;
+  margin-bottom: 24px;
+}
+.menu-list li {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+.menu-list li:first-child {
+  border-top: 1px solid var(--line);
+}
+.menu-line {
+  display: flex;
+  flex-wrap: wrap; /* 名前と価格が1行に入らないときは、価格を次の行へ */
+  align-items: baseline;
+  gap: 0 12px;
+  font-family: var(--f-min);
+  font-size: 1.05rem;
+}
+.menu-name {
+  max-width: 100%;
+}
+.menu-price {
+  flex: 1 0 auto; /* 次の行に落ちても、点線ごと右端にそろう */
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-family: var(--f-body);
+  white-space: nowrap;
+}
+.menu-price::before {
+  content: "";
+  flex: 1;
+  min-width: 16px;
+  border-bottom: 1px dotted var(--line);
+  transform: translateY(-0.3em);
+}
+.menu-badge {
+  display: inline-block;
+  margin-left: 0.6em;
+  padding: 0 8px;
+  background: var(--sage);
+  color: var(--paper);
+  font-family: var(--f-body);
+  font-size: 0.875rem;
+  line-height: 1.7;
+  vertical-align: 0.1em;
+  white-space: nowrap;
+}
+.menu-desc {
+  margin-top: 4px;
+  color: var(--ink-2);
+  font-size: 0.9rem;
+}
+.menu-photo img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+.menu-foot {
+  margin-top: 80px;
+  padding: 32px;
+  background: var(--wood);
+  font-size: 0.9rem;
+}
+.menu-foot li + li {
+  margin-top: 4px;
+}
+
+/* ---------- スクロールで静かに表示 ---------- */
+.js-reveal [data-reveal] {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.js-reveal [data-reveal].is-shown {
+  opacity: 1;
+  transform: none;
+}
+
+/* ==========================================================
+   600px〜
+   ========================================================== */
+@media (min-width: 600px) {
+  .container {
+    padding: 0 32px;
+  }
+  .section {
+    padding: 104px 0;
+  }
+  .news-list li {
+    grid-template-columns: 9em 1fr;
+    gap: 16px;
+  }
+  .space-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .insta-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .space-item--main {
+    grid-column: 1 / -1;
+  }
+  .menu-foot ul {
+    columns: 2;
+    column-gap: 40px;
+  }
+}
+
+/* ==========================================================
+   900px〜（PC）
+   ========================================================== */
+@media (min-width: 900px) {
+  :root {
+    --header-h: 84px;
+    --jump-gap: 56px;
+  }
+  .section {
+    padding: 112px 0;
+  }
+
+  .to-top {
+    right: 32px;
+    bottom: 32px;
+    width: 64px;
+    height: 64px;
+  }
+  .breadcrumb ol {
+    padding: 16px 32px 0;
+  }
+  .footer {
+    padding-bottom: 40px;
+  }
+
+  /* PCでは文字を16px以上に */
+  .signature-note,
+  .insta-note,
+  .menu-badge,
+  .access-mark-label,
+  .breadcrumb ol,
+  .to-top,
+  .status,
+  .space-item figcaption,
+  .space-seats,
+  .footer-info,
+  .menu-note,
+  .menu-desc,
+  .menu-foot,
+  .time-now,
+  .footer-note,
+  .footer-copy {
+    font-size: 1rem;
+  }
+
+  /* ロゴを真ん中に、左右にメニュー（デザインカンプどおり） */
+  .header-inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 40px;
+  }
+  .logo {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 2rem;
+  }
+  .menu-btn {
+    display: none;
+  }
+  .nav {
+    display: contents;
+    visibility: visible; /* スマホ用の「閉じた状態」を解除 */
+  }
+  .nav-list {
+    display: flex;
+    gap: 56px;
+  }
+  .nav-list--left {
+    grid-column: 1;
+    grid-row: 1;
+    justify-content: flex-end;
+  }
+  .nav-list--right {
+    grid-column: 3;
+    grid-row: 1;
+  }
+  .nav-list a {
+    padding: 8px 0;
+    border: none;
+    font-size: 1.05rem;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  .nav-list--left li:first-child a {
+    border-top: none;
+  }
+  .nav-list a:hover,
+  .nav-list a:active,
+  .nav-list a[aria-current="page"],
+  .nav-list a.is-here {
+    background: none;
+    border-bottom-color: var(--ink);
+  }
+  /* ABOUT・NEWS・ACCESSの所を見ているときは、HOMEではなくその項目に下線 */
+  .nav.has-here a[aria-current="page"]:not(:hover) {
+    border-bottom-color: transparent;
+  }
+  .nav-list a[aria-current="page"],
+  .nav-list a.is-here {
+    box-shadow: none;
+  }
+  .nav-list a:focus-visible {
+    outline-offset: 4px;
+  }
+
+  .hero-stage {
+    height: min(80svh, 680px);
+  }
+  .hero-lead {
+    top: 26%;
+  }
+  /* 筆記体は中央の文字とそろえて中央に置き、上の「Discover Our Menu」の下線に重ならない大きさにする */
+  .hero-script {
+    left: 50%;
+    bottom: 4%;
+    transform: translateX(-50%);
+    font-size: clamp(5rem, 13vw, 11rem);
+  }
+  .hero-arrow--prev {
+    left: 20px;
+  }
+  .hero-arrow--next {
+    right: 20px;
+  }
+  .frame-photo {
+    padding: 16px;
+  }
+
+  .about-inner {
+    grid-template-columns: 6fr 5fr; /* 写真を大きく */
+    gap: 80px;
+    align-items: center;
+  }
+  .signature-inner {
+    grid-template-columns: 5fr 6fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .signature-photo {
+    order: 2; /* コンセプトの写真（左）と交互に、プリンは右へ */
+  }
+  .insta-grid {
+    gap: 16px;
+  }
+
+  .time-row {
+    grid-template-columns: 7fr 5fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .time-row--reverse {
+    grid-template-columns: 5fr 7fr;
+  }
+  .time-row--reverse .time-photo {
+    order: 2;
+  }
+  .time-row + .time-row {
+    margin-top: 96px;
+  }
+
+  .coffee {
+    padding: 168px 0;
+  }
+
+  /* 店内：大きな1枚＋小さな2枚 */
+  .space-grid {
+    grid-template-columns: 7fr 5fr;
+    grid-template-rows: auto auto;
+    column-gap: 48px;
+    row-gap: 40px;
+  }
+  .space-item--main {
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+  .space-item--main img {
+    aspect-ratio: 4 / 5;
+  }
+
+  .news-inner {
+    display: grid;
+    grid-template-columns: 4fr 8fr;
+    gap: 48px;
+  }
+
+  .access-photo img {
+    aspect-ratio: 2 / 1;
+  }
+  .access-mark {
+    margin-bottom: 48px;
+  }
+  .access-body {
+    display: grid;
+    grid-template-columns: 4fr 8fr; /* お知らせと同じ、見出し左・内容右 */
+    gap: 48px;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr auto;
+    align-items: start;
+  }
+  .footer-nav {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    justify-content: flex-end;
+  }
+
+  .page-head {
+    height: 340px;
+  }
+  .menu-jump {
+    display: flex;
+    justify-content: center;
+  }
+  .menu-jump a {
+    padding: 8px 18px;
+  }
+  .menu-block {
+    grid-template-columns: 7fr 5fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .menu-block--text {
+    grid-template-columns: 1fr;
+    max-width: 760px;
+  }
+}
+
+/* 動きを減らす設定の方には、動きを止める */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+}

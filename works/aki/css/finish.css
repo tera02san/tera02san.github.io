@@ -1,0 +1,1202 @@
+/* ==========================================================
+   仕上げ
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   仕上げ：写真のかたち・レイヤー・文字組み
+   （各セクションの指定を上書きするので、セクションより後に読み込む）
+   ---------------------------------------------------------- */
+
+.svgDefs {
+	position: absolute;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
+
+/* 切り抜いた形に白いふちどり＋影をつける */
+.shape {
+	display: block;
+	filter: drop-shadow(5px 0 0 #fff) drop-shadow(-5px 0 0 #fff)
+		drop-shadow(0 5px 0 #fff) drop-shadow(0 -5px 0 #fff)
+		drop-shadow(0 14px 18px rgba(var(--shade), .18));
+}
+
+.shape img {
+	display: block;
+	width: 100%;
+	border: none;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.shape--cloud img {
+	clip-path: url(#clipCloud);
+}
+
+/* ゆるく形が変わる丸（ブロブ） */
+.shape--blob img {
+	aspect-ratio: 1;
+	object-fit: cover;
+	border-radius: 42% 58% 52% 48% / 48% 44% 56% 52%;
+	animation: featBlob 12s ease-in-out infinite;
+}
+
+/* アーチ窓：上だけ半円 */
+.shape--arch img {
+	border-radius: 999px 999px 18px 18px;
+}
+
+/* 共通レイヤー部品 */
+.layer {
+	position: relative;
+	isolation: isolate;
+}
+
+.layer .layer__sub {
+	position: absolute;
+	z-index: 2;
+	right: -6px;
+	bottom: 6%;
+	width: 30%;
+	max-width: 150px;
+	aspect-ratio: 1;
+	height: auto;
+	object-fit: cover;
+	border-radius: 50%;
+	border: 5px solid #fff;
+	box-shadow: 0 10px 22px rgba(var(--shade), .2);
+	animation: bob 4s ease-in-out infinite;
+}
+.feat__photo .feat__sub[src*="lovebird"]:not(.feat__sub--face),
+.layer__sub[src*="mameruriha"] {
+	object-fit: contain;
+	background: #fff;
+}
+
+.layer__stamp {
+	position: absolute;
+	z-index: 3;
+	top: -6px;
+	left: -6px;
+	width: 92px;
+	height: 92px;
+	display: grid;
+	place-content: center;
+	text-align: center;
+	border-radius: 50%;
+	background: #fff;
+	border: 3px dashed var(--t-deco, var(--pink));
+	box-shadow: 4px 5px 0 var(--t, var(--pink-mid)), 6px 10px 18px rgba(var(--shade), .12);
+	color: var(--t-text, var(--pink-text));
+	font-weight: 900;
+	font-size: 13px;
+	line-height: 1.45;
+	transform: rotate(-10deg);
+	animation: stampWiggle 5s ease-in-out infinite;
+}
+
+.layer__decos {
+	position: absolute;
+	inset: 0;
+	z-index: 3;
+	pointer-events: none;
+}
+
+.layer__deco {
+	position: absolute;
+	font-size: 22px;
+	line-height: 1;
+	color: var(--t-deco, var(--pink));
+	animation: bob 3s ease-in-out infinite;
+}
+
+.layer__deco--1 {
+	top: 2%;
+	right: 8%;
+}
+
+.layer__deco--2 {
+	top: 48%;
+	left: -10px;
+	font-size: 16px;
+	animation-delay: .8s;
+}
+
+.layer__deco--3 {
+	bottom: 4%;
+	left: 30%;
+	font-size: 18px;
+	animation-delay: 1.4s;
+}
+
+/* Concept（アーチ） */
+.concept__photo .layer__sub {
+	bottom: 4%;
+	right: -22px;
+}
+
+/* 日替わりランチ（雲） */
+.lunch__photo .lunch__zoom {
+	overflow: visible;
+	border-radius: 0;
+}
+
+.lunch__photo .lunch__zoom img {
+	aspect-ratio: 4 / 3;
+}
+
+.lunch__photo .layer__sub {
+	bottom: 14%;
+	right: -10px;
+	width: 26%;
+}
+
+/* Instagram（ハート） */
+.insta__photoWrap {
+	padding: 10px;
+}
+
+.insta__photoWrap .insta__photo {
+	transform: none;
+	aspect-ratio: 1;
+	object-fit: cover;
+}
+
+.insta__photoWrap .shape {
+	transform: rotate(-4deg);
+}
+
+.insta__photoWrap .layer__stamp {
+	top: 4px;
+	left: 4px;
+}
+
+.insta__photoWrap .layer__sub {
+	bottom: 2%;
+	right: 2%;
+}
+
+/* 外観（アーチ窓）：目印の看板が右にあるので、右寄りで切り抜く */
+.access__photo .shape img {
+	height: auto;
+	max-height: none;
+	aspect-ratio: 4 / 3.3;
+	object-fit: cover;
+	object-position: 70% 50%;
+}
+
+.access__photo .layer__stamp {
+	/* 外観にかからないよう、アーチの外側（左上のすき間）に置く */
+	top: -28px;
+	left: -18px;
+}
+
+/* 下層ページのヒーロー */
+.subHero__photo::before {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	inset: 6% -6% -4% 8%;
+	border-radius: 46% 54% 38% 62% / 55% 40% 60% 45%;
+	background: var(--t);
+	opacity: .6;
+	transform: rotate(8deg);
+}
+
+.subHero__photo .layer__sub {
+	right: -4px;
+	bottom: 2%;
+	width: 32%;
+}
+
+/* 下に看板や文字がある写真は、まる写真を右上（壁側）へ */
+.subHero__photo .layer__sub--tr {
+	top: 4%;
+	bottom: auto;
+}
+
+/* 小さな写真はまるに */
+.lunch__thumb,
+.otherPlan img {
+	border-radius: 50%;
+}
+
+.lunch__thumb {
+	display: block;
+	border-radius: 10px;
+}
+
+/* メニュー・ドリンクの写真は上がドーム */
+.dish__photo,
+.drinks img {
+	border-radius: 999px 999px 14px 14px;
+}
+
+@media (max-width: 768px) {
+	.layer__stamp {
+		width: 78px;
+		height: 78px;
+		font-size: 12px;
+	}
+
+	.concept__photo .layer__sub {
+		right: -40px;
+	}
+
+	.access__photo .shape img {
+		aspect-ratio: 3 / 4;
+	}
+}
+
+/* ボタンにきらっと光が走る */
+.btn--pink,
+.headerReserve {
+	position: relative;
+	overflow: hidden;
+}
+
+.zukan,
+.gallery,
+.access,
+.subSec--tint {
+	margin-inline: 12px;
+	border-radius: 24px;
+}
+
+.zukan,
+.gallery,
+.access {
+	margin-top: 24px;
+}
+
+@media (max-width: 600px) {
+	.members,
+	.story,
+	.zukan,
+	.gallery,
+	.access,
+	.subSec--tint {
+		margin-inline: 8px;
+		border-radius: 18px;
+	}
+}
+
+/* 見出し・ボタンなど短い文字は、プロポーショナル詰め（palt）で字間を整える */
+h1,
+h2,
+h3,
+.hero__ja,
+.secTitle__ja,
+.subHero__title,
+.subHero__catch,
+.subTitle__ja,
+.feat__title,
+.scrap__title,
+.member__catch,
+.panel__title,
+.insta__title,
+.ctaBox__title,
+.lunch__price,
+.btn,
+.headerReserve,
+.gnav a,
+.tab,
+.planSwitch a,
+.nameTag,
+.member__role,
+.layer__stamp,
+.feat__stamp {
+	font-feature-settings: "palt";
+	letter-spacing: .08em;
+}
+
+/* ナビは項目が多いので、字間を少し詰めてまとまりを出す */
+.gnav a {
+	letter-spacing: .04em;
+}
+
+/* 英字の見出しは詰めすぎない */
+.secTitle__en,
+.hero__en,
+.subHero__label,
+.subTitle__en {
+	font-feature-settings: "kern";
+}
+
+.recommend,
+.reserveSteps {
+	gap: 28px;
+}
+
+.news__list a,
+.infoTable .textLink,
+.drinks__note .textLink,
+.menu__note .textLink {
+	display: inline-block;
+	padding-block: 10px;
+	margin-block: -10px;
+}
+
+
+/* ----------------------------------------------------------
+   写真の形のルール
+   主役＝楕円／並ぶ写真＝ずらし色アーチ／ごはん＝円
+   ---------------------------------------------------------- */
+
+/* ずらし色アーチ：写真の後ろに、カードの色のアーチを少しずらして重ねる */
+.member__photo,
+.dish__photo,
+.concept__photo > img:first-child,
+.drinks img,
+.rules__photo {
+	border-radius: 999px 999px 6px 6px;
+	box-shadow: 10px 10px 0 var(--arch, var(--pink-mid));
+}
+
+.member__photo {
+	--arch: var(--c);
+	margin: 0 10px 10px 0;
+}
+
+.dish__photo {
+	--arch: var(--c-mid, var(--pink-mid));
+	width: calc(100% - 8px);
+	margin-bottom: 8px;
+	box-shadow: 8px 8px 0 var(--arch);
+}
+
+.dish--mint { --c-mid: var(--mint-mid); }
+.dish--sky { --c-mid: var(--sky-mid); }
+.dish--lemon { --c-mid: var(--lemon-mid); }
+
+.concept__photo > img:first-child {
+	border: none;
+	box-shadow: 14px 14px 0 var(--pink-mid);
+}
+
+.drinks img {
+	--arch: var(--t, var(--pink-mid));
+	width: calc(100% - 8px);
+	box-shadow: 8px 8px 0 var(--arch);
+}
+
+.rules__photo {
+	--arch: var(--lemon-mid);
+	border: none;
+	aspect-ratio: 4 / 3;
+	width: min(300px, calc(100% - 12px));
+	box-shadow: 12px 12px 0 var(--arch);
+}
+
+/* 主役の写真は、ヒーローと同じゆらぐ楕円に */
+.staffPhoto img {
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	border: 10px solid #fff;
+	border-radius: 58% 42% 50% 50% / 50% 55% 45% 50%;
+	animation: blob 10s ease-in-out infinite;
+}
+
+.staffPhoto .layer__stamp {
+	top: 2%;
+	right: 2%;
+}
+
+/* ごはんの写真は、お皿に合わせて円に */
+.lunch__thumb {
+	width: 82%;
+	margin-inline: auto;
+	aspect-ratio: 1;
+	border-radius: 50%;
+}
+
+/* 外観は、細いラインを添えた線アーチに（ほかの写真と同じく右下へずらし、光は左上から） */
+.access__photo .shape {
+	position: relative;
+}
+
+.access__photo .shape::after {
+	content: "";
+	position: absolute;
+	z-index: -1;
+	inset: 12px -12px -12px 12px;
+	border: 2px solid var(--pink-display);
+	border-radius: 999px 999px 18px 18px;
+	pointer-events: none;
+}
+
+@media (max-width: 768px) {
+	.staffPhoto img {
+		border-width: 6px;
+	}
+
+	.staffPhoto .layer__stamp {
+		top: -4%;
+		right: 0;
+	}
+
+	.member__photo {
+		box-shadow: 8px 8px 0 var(--arch);
+		margin: 0 8px 8px 0;
+	}
+}
+
+/* アーチで上の角が切れるので、タグは写真の左下に */
+.dish__tag {
+	top: auto;
+	bottom: 8px;
+	left: 8px;
+}
+
+/* インコ部屋の見取り図：横長なので、上がゆるく丸いドーム形に */
+.roomMap__photo {
+	border-radius: 28px;
+	box-shadow: 12px 12px 0 var(--t, var(--mint-mid)), var(--shadow);
+}
+
+
+/* ----------------------------------------------------------
+   色のある背景：上のふちをスカラップ（小さな半円の連続）に
+   写真＝アーチ、区切り＝スカラップと役割を分け、
+   点線の丸スタンプや見出し下の●●●●と同じ「丸の連続」でそろえる
+   ---------------------------------------------------------- */
+
+.zukan,
+.gallery,
+.reserve,
+.access,
+.subSec--tint,
+.footer {
+	--sc: clamp(10px, 1.2vw, 16px);
+	position: relative;
+	margin-inline: 0;
+	border-radius: 0;
+}
+
+.zukan { --sc-bg: var(--mint-soft); }
+.gallery { --sc-bg: var(--sky-soft); }
+.reserve,
+.footer { --sc-bg: var(--pink-soft); }
+.access { --sc-bg: var(--lemon-soft); }
+.subSec--tint { --sc-bg: var(--t-soft); }
+
+/* 下の端は、次のクリーム色のセクションへ少しずつなじませる（看板インコ〜ストーリーと同じ考え方） */
+.zukan,
+.gallery,
+.reserve,
+.subSec--tint {
+	background: linear-gradient(to bottom, var(--sc-bg) calc(100% - clamp(120px, 14vw, 200px)), var(--cream));
+}
+
+.zukan::before,
+.gallery::before,
+.reserve::before,
+.access::before,
+.subSec--tint::before,
+.footer::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 100%;
+	height: var(--sc);
+	background: radial-gradient(circle at 50% 100%, var(--sc-bg) calc(var(--sc) - .5px), transparent var(--sc)) 50% 0 / calc(var(--sc) * 2) var(--sc) repeat-x;
+	pointer-events: none;
+}
+
+/* 看板インコは、楕円のエプロン写真とぶつからないよう、上もまっすぐ */
+.members {
+	margin-inline: 0;
+	border-radius: 0;
+}
+
+/* 看板インコとストーリーは同じピンクでつながっているので、下はまっすぐ */
+.story {
+	margin-inline: 0;
+	border-radius: 0;
+}
+
+/* 下層ページの上部は、下のふちを下向きのスカラップに */
+.subHero {
+	--sc: clamp(10px, 1.2vw, 16px);
+	border-radius: 0;
+	-webkit-mask:
+		radial-gradient(circle at 50% 0, #000 calc(var(--sc) - .5px), transparent var(--sc)) 50% 100% / calc(var(--sc) * 2) var(--sc) repeat-x,
+		linear-gradient(#000 0 0) 0 0 / 100% calc(100% - var(--sc)) no-repeat;
+	mask:
+		radial-gradient(circle at 50% 0, #000 calc(var(--sc) - .5px), transparent var(--sc)) 50% 100% / calc(var(--sc) * 2) var(--sc) repeat-x,
+		linear-gradient(#000 0 0) 0 0 / 100% calc(100% - var(--sc)) no-repeat;
+}
+
+/* エプロン写真：キラキラがスタンプの文字に重ならないよう、左上へ */
+.staffPhoto .layer__deco--1 {
+	top: 4%;
+	right: auto;
+	left: 6%;
+}
+
+/* フッターのスカラップが、ひとつ上のセクションの色の上に直接のる（すき間を見せない） */
+.footer {
+	margin-top: 0;
+	z-index: 1;
+}
+
+main > :last-child {
+	padding-bottom: var(--last-pb, 72px);
+}
+
+.access:last-child {
+	--last-pb: 124px;
+}
+
+@media (max-width: 768px) {
+	.access:last-child {
+		--last-pb: 88px;
+	}
+}
+
+/* まっすぐな切り替わりは、境目をグラデーションでふんわり溶かす */
+.members {
+	background: linear-gradient(to bottom, var(--cream), var(--pink-soft) clamp(120px, 14vw, 200px));
+}
+
+.story {
+	background: linear-gradient(to top, var(--cream), var(--pink-soft) clamp(120px, 14vw, 200px));
+}
+
+
+/* ----------------------------------------------------------
+   PCでは、文字はすべて16px以上に
+   （スマホは各パーツの指定のまま。✓や●などのアイコンは除く）
+   ---------------------------------------------------------- */
+@media (min-width: 769px) {
+	.subTitle__en,
+	.gnav a,
+	.headerReserve,
+	.toTop,
+	.footer__nav a,
+	.motionToggle,
+	.footer__copy,
+	.floatTop,
+	.hero__badge,
+	.nameTag,
+	.hero__bubble small,
+	.openStatus,
+	.news__tag,
+	.member__role,
+	.member__kind,
+	.member__name span,
+	.member__hello,
+	.scrap__kicker,
+	.scrap__link,
+	.facts li,
+	.facts span,
+	.plan__ribbon,
+	.plan__price small,
+	.plan__note,
+	.plan__more span,
+	.dish__tag,
+	.dish__desc,
+	.dish__price small,
+	.menu__note,
+	.lunch__badge,
+	.lunch__photo figcaption,
+	.lunch__price small,
+	.lunch__name small,
+	.lunch__note,
+	.polaroid span,
+	.rules__badge,
+	.access__info small,
+	.access__photo figcaption,
+	.breadcrumb ol,
+	.subHero__label,
+	.subHero__meta dt,
+	.subHero__meta dd small,
+	.subHero__sticker,
+	.planSwitch a,
+	.flow__num small,
+	.flow__time,
+	.infoTable dd small,
+	.drinks__note,
+	.otherPlan__time,
+	.otherPlan__more,
+	.feat__label,
+	.feat__stamp,
+	.layer__stamp {
+		font-size: 16px;
+	}
+
+	/* 丸いスタンプは、文字が大きくなったぶん円も大きく */
+	.layer__stamp {
+		width: 112px;
+		height: 112px;
+	}
+
+	.feat__stamp {
+		width: 124px;
+		height: 124px;
+	}
+}
+
+/* ほかのプランカード：PCでは写真を上・文字を下にして、どちらも大きく */
+@media (min-width: 769px) {
+	.otherPlans--3 {
+		max-width: 1120px;
+	}
+
+	.otherPlan {
+		grid-template-columns: 1fr;
+		justify-items: center;
+		gap: 24px;
+		padding: 32px 24px 28px;
+		text-align: center;
+	}
+
+	.otherPlan img {
+		width: 140px;
+		height: 140px;
+	}
+
+	.otherPlan__time {
+		font-size: 17px;
+	}
+
+	.otherPlan__name {
+		font-size: 21px;
+	}
+
+	.otherPlan__price {
+		font-size: 23px;
+	}
+
+	.otherPlan__more {
+		display: block;
+		width: fit-content;
+		margin: 8px auto 0;
+	}
+}
+
+/* ----------------------------------------------------------
+   スマホでも、文字は14px以上に（見やすさ・アクセシビリティ）
+   丸いスタンプは、文字が大きくなったぶん円も少し大きく
+   ---------------------------------------------------------- */
+@media (max-width: 768px) {
+	.hero__bubble small,
+	.news__tag,
+	.scrap__kicker,
+	.facts span,
+	.plan__price small,
+	.dish__tag,
+	.lunch__badge,
+	.lunch__photo figcaption,
+	.lunch__price small,
+	.polaroid span,
+	.rules__badge,
+	.footer__copy,
+	.floatTop,
+	.flow__num small,
+	.feat--halloween .feat__stamp::before,
+	.layer__stamp,
+	.feat__stamp,
+	.subHero__sticker {
+		font-size: 14px;
+	}
+
+	.layer__stamp {
+		width: 90px;
+		height: 90px;
+	}
+
+	.staffPhoto .layer__stamp {
+		width: 88px;
+		height: 88px;
+		font-size: 14px;
+	}
+
+	.feat__stamp {
+		width: 106px;
+		height: 106px;
+	}
+
+	.subHero__sticker {
+		width: 100px;
+		height: 100px;
+	}
+}
+
+/* スマホでは、写真まわりの小さな飾り（✦・♡）がスタンプや丸い写真に重なってごちゃつくので出さない
+   （ハロウィンのカボチャ・コウモリなど、絵の飾りは残す） */
+@media (max-width: 768px) {
+	.layer__deco,
+	.feat__deco:not(.feat__deco--svg) {
+		display: none;
+	}
+}
+
+/* おめかしAKI：主役の顔と体が見えるよう、スタンプと丸い写真を写真の外側へ寄せる */
+.feat.feat--rev .feat__photo--aki .feat__stamp {
+	top: -6%;
+	right: -6%;
+}
+
+.feat.feat--rev .feat__photo--aki .feat__sub {
+	left: -6%;
+	bottom: -8%;
+	width: 28%;
+}
+
+@media (max-width: 768px) {
+	.feat.feat--rev .feat__photo--aki .feat__stamp {
+		top: -8%;
+		right: -3%;
+	}
+
+	.feat.feat--rev .feat__photo--aki .feat__sub {
+		left: -3%;
+		bottom: -10%;
+		width: 26%;
+	}
+}
+
+/* ----------------------------------------------------------
+   上下の余白の見直し
+   ・セクションの間は、上下合わせて PC 176px／SP 136px。セクション内の小見出し（Café Menu など）の上 120px と近づけ、余白の差が目立たないように
+   ・「ホームへもどる」は前後にゆとりを持たせる
+   ・フッターは、ロゴ・ボタン・注記・コピーライトの間をそろえる
+   ---------------------------------------------------------- */
+.sec {
+	padding-bottom: 80px;
+}
+
+/* ストーリー（看板インコの続き）とアクセスは、それぞれの上余白のまま */
+.sec:not(.story):not(.access) {
+	padding-top: 96px;
+}
+
+.subSec {
+	padding-top: 88px;
+	padding-bottom: 120px;
+}
+
+.backHome {
+	padding: 64px 20px 112px;
+}
+
+.footer__logo {
+	margin-top: 40px;
+}
+
+.motionToggle {
+	margin-top: 24px;
+}
+
+.footer__note {
+	margin-top: 32px;
+}
+
+.footer__copy {
+	margin-top: 16px;
+}
+
+@media (max-width: 768px) {
+	.sec {
+		padding-bottom: 64px;
+	}
+
+	.sec:not(.story):not(.access) {
+		padding-top: 72px;
+	}
+
+	.menu__sub {
+		margin-top: 96px;
+	}
+
+	.subSec {
+		padding-top: 64px;
+		padding-bottom: 88px;
+	}
+
+	.backHome {
+		padding: 48px 20px 88px;
+	}
+
+	.footer__logo {
+		margin-top: 32px;
+	}
+
+	.footer__note {
+		margin-top: 28px;
+	}
+}
+
+/* 「ホームへもどる」が main の最後にあるページでも、下の余白を広めに */
+.backHome:last-child {
+	--last-pb: 112px;
+}
+
+@media (max-width: 768px) {
+	.backHome:last-child {
+		--last-pb: 88px;
+	}
+}
+
+/* 見出しのすぐ下に説明文がないセクションは、見出しと中身の間が詰まるので広げる（下層ページの見出しと同じくらいに） */
+.secTitle + :not(.secLead) {
+	margin-top: 72px;
+}
+
+@media (max-width: 768px) {
+	.secTitle + :not(.secLead) {
+		margin-top: 52px;
+	}
+}
+
+/* コンセプトの3つのポイント：上（写真との間）と下（お知らせとの間）の余白をそろえる。カードの中も上下同じに */
+.concept__points {
+	margin-top: 112px;
+}
+
+.concept__points li {
+	padding-block: 28px;
+}
+
+@media (max-width: 768px) {
+	.concept__points {
+		margin-top: 80px;
+	}
+}
+
+@media (max-width: 600px) {
+	.concept__points li {
+		padding-block: 18px;
+	}
+}
+
+/* お知らせの下は、次の「看板インコ」の上余白とつながって広くなりすぎるので詰める */
+.news {
+	padding-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+	.news {
+		padding-bottom: 16px;
+	}
+}
+
+/* スマホの日替わりランチは、2列だと説明文が「おに／ぎり」のように細かく折れるので、
+   1列にして「写真が左・文章が右」の横並びに */
+@media (max-width: 600px) {
+	.lunch__list {
+		grid-template-columns: 1fr;
+		grid-auto-rows: auto;
+		gap: 10px;
+	}
+
+	.lunch__list li {
+		display: grid;
+		grid-template-columns: 84px 1fr;
+		align-items: center;
+		gap: 14px;
+		padding: 12px 14px;
+	}
+
+	.lunch__thumb {
+		width: 100%;
+		margin: 0;
+	}
+
+	.lunch__name b,
+	.lunch__name small {
+		min-height: 0;
+		text-align: left;
+	}
+
+	.lunch__day {
+		top: 6px;
+		left: 6px;
+		width: 34px;
+		height: 24px;
+		font-size: 14px;
+	}
+
+	.lunch__list .lunch__badge {
+		position: absolute;
+		top: 8px;
+		right: 10px;
+		grid-column: auto;
+	}
+}
+
+/* ----------------------------------------------------------
+   囲みの中の上下の余白をそろえる
+   見出しの行間ぶん上が、ボタンや空のメッセージ欄ぶん下が広く見えていたので、
+   見た目の上下（文字やボタンのふちからの距離）が同じになるように調整
+   ---------------------------------------------------------- */
+
+/* 「コピーしました」の欄は、文字が出るときだけ場所を取る（読み上げ用に要素自体は残す） */
+.dmTemplate__done:empty {
+	min-height: 0;
+	margin-top: 0;
+}
+
+/* お知らせ：見出し「News」の行間ぶん、上を詰める */
+.news__box {
+	padding-top: 36px;
+}
+
+/* 日替わりランチ：上の価格の文字が大きいぶん、下を足す */
+.lunch {
+	padding-bottom: 36px;
+}
+
+@media (max-width: 768px) {
+	.news__box {
+		padding-top: 24px;
+	}
+
+	.lunch {
+		padding-bottom: 26px;
+	}
+
+	/* アクセス表：最後の行の下が詰まって見えるので足す */
+	.access__card {
+		padding-bottom: 37px;
+	}
+}
+
+/* ----------------------------------------------------------
+   ナビで飛んだときの着地位置をそろえる
+   見出しの文字の上端が、ヘッダーの下 PC 46px／SP 56px に来るように
+   （アクセスは上の余白がほかと違う、ランチ・カフェは小見出しへ直接飛ぶため個別に補正）
+   ---------------------------------------------------------- */
+.access[id] {
+	scroll-margin-top: -92px;
+}
+
+/* 小見出しは大見出しと文字の大きさ・行の高さが違うので、文字の上端がそろうように個別に補正する */
+.menu__sub[id] {
+	scroll-margin-top: 7px;
+}
+
+.subSec[id] {
+	scroll-margin-top: -108px;
+}
+
+@media (max-width: 768px) {
+	.access[id] {
+		scroll-margin-top: -64px;
+	}
+
+	.menu__sub[id] {
+		scroll-margin-top: 21px;
+	}
+
+	/* 下層ページのスマホは、もとの値のまま（上の PC 用の指定を打ち消す） */
+	.subSec[id] {
+		scroll-margin-top: -72px;
+	}
+}
+
+/* ご予約の下は、続く「はじめての方へ（Q&A）」と内容がつながっているので、
+   ほかのセクションの境目より詰めて、ひと続きのまとまりに見せる */
+.reserve.sec {
+	padding-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+	.reserve.sec {
+		padding-bottom: 32px;
+	}
+}
+
+/* Menu セクションの中（料金プラン・日替わりランチ・カフェメニュー）の横幅を、
+   いちばん広いカフェメニュー（.inner の幅）にそろえて、左右の端を一直線に */
+.plans,
+.lunch {
+	max-width: none;
+}
+
+/* 幅が広がったぶん、ランチの説明文は1行が長くなりすぎないように */
+.lunch__lead {
+	max-width: 40em;
+}
+
+/* ----------------------------------------------------------
+   看板インコ：スマホ（900px以下）は横スワイプ
+   次のカードの端をのぞかせて「横に続く」ことが分かるようにし、
+   下の点で、いま何羽目かを表示する（点を押しても移動できる）
+   ---------------------------------------------------------- */
+.members__hint,
+.members__dots {
+	display: none;
+}
+
+@media (max-width: 900px) {
+	.members__hint {
+		display: block;
+		margin-top: 8px;
+		text-align: center;
+		font-size: 14px;
+		font-weight: 700;
+		color: var(--pink-text);
+	}
+
+	.members__list {
+		display: flex;
+		gap: 14px;
+		max-width: none;
+		/* 画面の端まで広げて、カードが端から出入りするように */
+		margin-inline: -20px;
+		padding: 16px 20px 20px;
+		overflow-x: auto;
+		scroll-snap-type: x mandatory;
+		scroll-padding-inline: 20px;
+		overscroll-behavior-x: contain;
+		scrollbar-width: none;
+	}
+
+	.members__list::-webkit-scrollbar {
+		display: none;
+	}
+
+	/* 次のカードが約30pxのぞく幅 */
+	.members__list .member {
+		flex: 0 0 min(calc(100% - 24px), 360px);
+		scroll-snap-align: start;
+	}
+
+	/* 細いカードでも単語の途中で折れないよう、プロフィールは「見出しが上・内容が下」に */
+	.members__list .member__prof div {
+		display: block;
+	}
+
+	.members__list .member__prof dt {
+		width: auto;
+		font-size: 14px;
+		line-height: 1.6;
+	}
+
+	.members__list .member__prof dd {
+		line-height: 1.7;
+	}
+
+	/* スワイプ中にカードが傾くと落ち着かないので、持ち上がる動きは止める */
+	.members__list .member:hover {
+		transform: none;
+	}
+
+	.members__list:focus-visible {
+		outline: 3px solid var(--focus);
+		outline-offset: -3px;
+		border-radius: 24px;
+	}
+
+	.members__dots {
+		display: flex;
+		justify-content: center;
+		margin-top: 4px;
+	}
+
+	.members__dot {
+		display: grid;
+		place-items: center;
+		width: 44px;
+		height: 44px;
+		padding: 0;
+		border: none;
+		background: none;
+		cursor: pointer;
+	}
+
+	.members__dot::before {
+		content: "";
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background: var(--pink-mid);
+		transition: width .25s, background-color .25s;
+	}
+
+	/* 選択中は横長にして、色だけに頼らず形でも分かるように */
+	.members__dot[aria-current="true"]::before {
+		width: 26px;
+		border-radius: 999px;
+		background: var(--btn);
+	}
+}
+
+/* 横からふわっと出てくる要素が、出てくる前に画面の右へはみ出さないように
+   （clip は hidden と違ってスクロールの入れ物にならないので、ヘッダーの追従などに影響しない） */
+main {
+	overflow-x: clip;
+}
+
+/* ----------------------------------------------------------
+   スマホ（600px以下）：カードを短く読みやすく
+   ・カード内の文章の行間を少し詰める（1.9前後 → 1.6）
+   ・看板インコの写真を縦長（3:4）から正方形にして、1枚が画面に収まる高さに
+   ---------------------------------------------------------- */
+@media (max-width: 600px) {
+	.member p,
+	.member dd,
+	.plan p,
+	.access__card p,
+	.access__card dd,
+	.news__box p,
+	.insta__card p {
+		line-height: 1.6;
+	}
+
+	.members__list .member {
+		padding: 14px 14px 20px;
+	}
+
+	.member__photo {
+		aspect-ratio: 4 / 3;
+	}
+
+	.member__photo img,
+	.member__photo .member__img--top {
+		object-position: 50% 30%;
+	}
+
+	.member__body {
+		padding-top: 12px;
+	}
+
+	.member__name {
+		font-size: 30px;
+		white-space: nowrap;
+	}
+
+	.member__catch {
+		margin-top: 6px;
+	}
+
+	.member__prof {
+		margin-top: 12px;
+		padding: 8px 14px;
+	}
+
+	/* プロフィールは「見出し｜内容」を1行に並べて高さを詰める。内容は文節の切れ目（<wbr>）でだけ改行 */
+	.members__list .member__prof div {
+		display: grid;
+		grid-template-columns: 5.4em 1fr;
+		column-gap: 8px;
+		align-items: baseline;
+	}
+	.members__list .member__prof dt,
+	.members__list .member__prof dd {
+		line-height: 1.5;
+	}
+	.members__list .member__prof dd {
+		word-break: keep-all;
+		overflow-wrap: anywhere;
+	}
+
+	.member__hello {
+		margin-top: 14px;
+	}
+}

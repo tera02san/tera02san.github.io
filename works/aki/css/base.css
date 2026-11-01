@@ -1,0 +1,156 @@
+/* ==========================================================
+   ベース
+   ========================================================== */
+
+
+/* ----------------------------------------------------------
+   ベース：色・フォントの変数、リセット、共通の文字設定
+   ---------------------------------------------------------- */
+
+:root {
+	/* 写真と文章を並べたときの間（サイト全体でそろえる：PC横並び／スマホ縦並び） */
+	--gap-media: clamp(56px, 7vw, 104px);
+	--gap-media-sp: 40px;
+
+	/*
+	 * 広い背景（soft）は、目が疲れないくすみパステルでトーンをそろえる。
+	 * 文字・ボタン・タグ・飾りなど小さな部分は、かわいいはっきりめの色。
+	 * 文字色はすべて背景とのコントラスト比 4.5:1 以上。
+	 *
+	 * 【色のルール】
+	 * 背景・アクセントは4色：ピンク・ミント・水色・レモン（看板3羽の羽色＋クリーム）
+	 * 文字色は4色：こげ茶（--ink）・ピンク・ミント・水色（同じ色相の濃淡は1色と数える）
+	 * 新しいインコやページを足すときも、この4色から選ぶ。
+	 */
+	--pink-soft: #f6eaed;
+	--pink-mid: #ffc2d4;
+	--pink: #ff8fb3;
+	--pink-text: #b8325f;
+	--mint-soft: #eaf6f1;
+	--mint-mid: #a8e6d6;
+	--mint: #6fcfb8;
+	--mint-text: #17735d;
+	--sky-soft: #eaf0f6;
+	--sky-mid: #b3daf7;
+	--sky: #84c2f0;
+	--sky-text: #1f639e;
+	--lemon-soft: #f8f3e7;
+	--lemon-mid: #eee1c4;
+	--lemon: #e2cd9c;
+	/* レモンは背景・飾り用。文字はこげ茶にして、文字色を4色に抑える */
+	--lemon-text: var(--ink);
+	/* コザクラインコ（もも）はピンク、マメルリハ（ラムネ・レモン）はミントの仲間にまとめる */
+	--peach-soft: var(--pink-soft);
+	--peach-mid: var(--pink-mid);
+	--peach: var(--pink);
+	--peach-text: var(--pink-text);
+	--leaf-soft: var(--mint-soft);
+	--leaf-mid: var(--mint-mid);
+	--leaf-text: var(--mint-text);
+	--cream: #fdfaf7;
+	--white: #fff;
+	/* 本文の文字色。黒だと強いので、赤紫がかった茶色をやや明るめに（どの背景でもコントラスト7:1以上） */
+	--ink: #5a4651;
+	--ink-soft: #6e5763;
+	/* 24px以上の大きな見出し用（3:1以上） */
+	--pink-display: #d94a7b;
+	/* ボタン（白文字とのコントラスト比 5.1:1） */
+	--btn: #c7336a;
+	--btn-hover: #a92a58;
+	--btn-deep: #6e3040;
+	--focus: #1f639e;
+	/* 影もくすみローズ系で統一 */
+	--shade: 73, 54, 64;
+	--radius: 16px;
+	--shadow: 0 10px 30px rgba(var(--shade), .08);
+	/* 文字化けしないよう、Webフォント → 各OSの標準日本語フォントの順で指定 */
+	--font-ja: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "ヒラギノ丸ゴ ProN", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "BIZ UDPGothic", "Yu Gothic", "YuGothic", "Meiryo", "メイリオ", "Noto Sans JP", sans-serif;
+	--font-en: "Fredoka", "Arial Rounded MT Bold", var(--font-ja);
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	scroll-behavior: smooth;
+	scroll-padding-top: 108px;
+	-webkit-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	font-family: var(--font-ja);
+	font-size: 16px;
+	font-weight: 500;
+	color: var(--ink);
+	background: var(--cream);
+	line-height: 1.9;
+	-webkit-font-smoothing: antialiased;
+	overflow-x: hidden;
+	overflow-wrap: anywhere;
+	/* 「ソー／ダ」のような単語の途中での改行を防ぐ（対応ブラウザのみ。非対応でも表示は変わらない） */
+	word-break: auto-phrase;
+	line-break: strict;
+	font-kerning: normal;
+	letter-spacing: .04em;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+ul,
+ol,
+dl,
+dd,
+figure,
+p,
+h1,
+h2,
+h3,
+h4 {
+	margin: 0;
+	padding: 0;
+}
+
+ul,
+ol {
+	list-style: none;
+}
+
+button {
+	font: inherit;
+	color: inherit;
+	letter-spacing: inherit;
+	cursor: pointer;
+}
+
+/* キーボード操作時のフォーカスをはっきり見せる */
+:focus-visible {
+	outline: 3px solid var(--focus);
+	outline-offset: 3px;
+	border-radius: 8px;
+}
+
+.is-today .lunch__day {
+	background: var(--btn);
+	color: #fff;
+}
+
+/* 本文は読みやすい行間に */
+p,
+li,
+dd {
+	line-height: 1.95;
+}

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cafe HINOKI｜奈良のひのきのカフェ（モーニング・ランチ・カフェ）</title>
+  <meta name="description" content="吉野ひのきのカウンターがある、奈良の小さなカフェ「Cafe HINOKI」。朝8時からのモーニング、日替わりのランチ、ハンドドリップの珈琲と焼き菓子でゆっくり過ごせます。※ポートフォリオ用の架空の店舗です。">
+  <meta name="theme-color" content="#f7f3ec">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Cafe HINOKI">
+  <meta property="og:title" content="Cafe HINOKI｜奈良のひのきのカフェ">
+  <meta property="og:description" content="吉野ひのきのカウンターがある、奈良の小さなカフェ。モーニング・ランチ・カフェタイム。">
+  <meta property="og:image" content="img/hero-morning.jpg">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="fonts/allura/v23/9oRPNYsQpS4zjuA_iwgWHNn7GQ.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/cormorantgaramond/v21/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtKky2F7g.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CafeOrCoffeeShop",
+    "name": "Cafe HINOKI",
+    "description": "ポートフォリオ用の架空のカフェです。",
+    "image": "img/hero-morning.jpg",
+    "telephone": "0742-00-0000",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "JP",
+      "addressRegion": "奈良県",
+      "addressLocality": "奈良市",
+      "streetAddress": "ひのき町1-2-3"
+    },
+    "servesCuisine": ["Coffee", "Cafe"],
+    "priceRange": "¥300〜¥1,300",
+    "hasMenu": "menu.html",
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Thursday", "Friday", "Saturday"],
+      "opens": "08:00",
+      "closes": "17:00"
+    }]
+  }
+  </script>
+</head>
+<body>
+  <!-- 「上へ」ボタンの戻り先（キーボード操作もここから再開する） -->
+  <span id="top" tabindex="-1"></span>
+  <a href="#main" class="skip-link">本文へスキップ</a>
+
+  <header class="header">
+    <div class="header-inner">
+      <h1 class="logo"><a href="index.html">Cafe&ensp;HINOKI</a></h1>
+      <button type="button" class="menu-btn" aria-expanded="false" aria-controls="site-nav">
+        <span class="menu-btn-line" aria-hidden="true"></span>
+        <span class="visually-hidden">メニューを開く</span>
+      </button>
+      <nav id="site-nav" class="nav" aria-label="サイト内">
+        <ul class="nav-list nav-list--left">
+          <li><a href="index.html" aria-current="page">HOME</a></li>
+          <li><a href="menu.html">MENU</a></li>
+        </ul>
+        <ul class="nav-list nav-list--right">
+          <li><a href="#about">ABOUT</a></li>
+          <li><a href="#access">ACCESS</a></li>
+          <li><a href="#news">NEWS</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- トップのスライド：今の時間帯のスライドから始まる（js/config.js の timeSlots） -->
+    <section class="hero" aria-roledescription="カルーセル" aria-label="時間帯ごとのおすすめ">
+      <div class="hero-stage" aria-live="off">
+        <div class="hero-slide is-active" data-slot="morning" role="group" aria-roledescription="スライド" aria-label="1枚目（全3枚）：モーニング">
+          <img src="img/hero-morning.jpg" width="1800" height="1200" alt="朝の光が差し込む窓辺のテーブルと、湯気の立つマグカップ" fetchpriority="high">
+          <div class="hero-text">
+            <div class="hero-lead">
+              <p class="hero-copy">一日の<wbr>はじまりに<br>心<wbr>ほどける<wbr>一杯を</p>
+              <a href="menu.html#morning" class="hero-link" lang="en">Discover Our Menu</a>
+            </div>
+            <p class="hero-script" lang="en" aria-hidden="true">Morning</p>
+          </div>
+        </div>
+        <div class="hero-slide" data-slot="lunch" role="group" aria-roledescription="スライド" aria-label="2枚目（全3枚）：ランチ" aria-hidden="true" inert>
+          <img src="img/hero-lunch.jpg" width="1800" height="1200" alt="木のテーブルに並んだ、キッシュとサラダのランチプレートとラテ" loading="lazy">
+          <div class="hero-text">
+            <div class="hero-lead">
+              <p class="hero-copy">季節の<wbr>野菜と<br>ていねいな<wbr>お昼ごはん</p>
+              <a href="menu.html#lunch" class="hero-link" lang="en">Discover Our Menu</a>
+            </div>
+            <p class="hero-script" lang="en" aria-hidden="true">Lunch</p>
+          </div>
+        </div>
+        <div class="hero-slide" data-slot="cafe" role="group" aria-roledescription="スライド" aria-label="3枚目（全3枚）：カフェタイム" aria-hidden="true" inert>
+          <img src="img/hero-cafe.jpg" width="2000" height="1328" alt="ケーキやクロワッサン、ジュースが並ぶテーブル" loading="lazy">
+          <div class="hero-text">
+            <div class="hero-lead">
+              <p class="hero-copy">焼き菓子と<wbr>珈琲で<br>ひと休みの<wbr>午後を</p>
+              <a href="menu.html#sweets" class="hero-link" lang="en">Discover Our Menu</a>
+            </div>
+            <p class="hero-script" lang="en" aria-hidden="true">Cafe Time</p>
+          </div>
+        </div>
+        <button type="button" class="hero-arrow hero-arrow--prev" aria-label="前のスライド"></button>
+        <button type="button" class="hero-arrow hero-arrow--next" aria-label="次のスライド"></button>
+      </div>
+      <div class="hero-controls">
+        <button type="button" class="hero-dot" aria-label="モーニングのスライド"></button>
+        <button type="button" class="hero-dot" aria-label="ランチのスライド"></button>
+        <button type="button" class="hero-dot" aria-label="カフェタイムのスライド"></button>
+        <button type="button" class="hero-pause" aria-pressed="false" aria-label="スライドを一時停止"></button>
+      </div>
+    </section>
+
+    <!-- 今日の営業状況（js/main.js が自動で書きかえる） -->
+    <p class="status" data-shop-status data-state="unknown">営業時間 8:00〜17:00<wbr>（L.O. 16:30）／<wbr>水曜定休</p>
+
+    <!-- コンセプト -->
+    <section id="about" class="section about">
+      <div class="container about-inner">
+        <figure class="about-photo frame-photo" data-reveal>
+          <img src="img/concept-seat.jpg" width="1400" height="2099" alt="日の差し込む、ひのきのベンチ席" loading="lazy">
+        </figure>
+        <div class="about-text" data-reveal>
+          <p class="eyebrow" lang="en">Cafe HINOKI</p>
+          <h2 class="title">木の<wbr>香りと、<br>珈琲の<wbr>余韻。</h2>
+          <p>
+            店内のカウンターとテーブルには、奈良・吉野のひのきを使いました。扉をあけると、ふわりと木の香り。窓から入るやわらかな光のなかで、一杯ずつハンドドリップで淹れた珈琲をお出しします。
+          </p>
+          <p>
+            朝の一杯に立ち寄るのも、本を片手にひとりで長居するのも。その日の気分で、思い思いに過ごしていただけたらうれしいです。
+          </p>
+          <p class="about-sign">Cafe HINOKI 店主</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 看板メニュー -->
+    <section class="section signature">
+      <div class="container signature-inner">
+        <figure class="signature-photo" data-reveal>
+          <img src="img/signature-pudding.jpg" width="1600" height="2240" alt="白い器にのった、カラメルのかかったかためのプリン" loading="lazy">
+        </figure>
+        <div class="signature-body" data-reveal>
+          <p class="script-label" lang="en" aria-hidden="true">Signature</p>
+          <h2 class="title">いちばん<wbr>人気の、<br>かための<wbr>プリン</h2>
+          <p>卵と牛乳ときび砂糖だけで、毎朝お店で焼いています。スプーンを入れると、しっかりとした手ごたえ。ほろ苦いカラメルと一緒にどうぞ。</p>
+          <p class="signature-price">かためのプリン<span>450円</span></p>
+          <p class="signature-note">ドリンクとセットで50円引き／<wbr>1日20個まで</p>
+          <a href="menu.html#sweets" class="btn">甘いものを見る</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 時間帯ごとのメニュー -->
+    <section class="section times">
+      <div class="container">
+        <h2 class="title title--center" data-reveal>一日の、<wbr>三つの<wbr>時間</h2>
+        <p class="lead lead--center" data-reveal>朝・昼・午後で、<wbr>お出しするものが<wbr>少しずつ<wbr>変わります。</p>
+
+        <div class="time-row" data-slot="morning" data-reveal>
+          <figure class="time-photo frame-photo">
+            <img src="img/menu-toast.jpg" width="1000" height="740" alt="厚切りトーストと珈琲のモーニング" loading="lazy">
+          </figure>
+          <div class="time-body">
+            <p class="time-range">8:00 – 11:00</p>
+            <h3 class="time-title">モーニング</h3>
+            <p class="time-now" hidden>ただいまの時間</p>
+            <p>厚切りのトーストに、自家製のジャムとバター。ドリンクを頼むと、トーストと<span class="nobr">ゆで卵</span>がつきます。</p>
+            <p class="time-item">トーストセット<span>ドリンク代＋150円</span></p>
+          </div>
+        </div>
+
+        <div class="time-row time-row--reverse" data-slot="lunch" data-reveal>
+          <figure class="time-photo frame-photo">
+            <img src="img/menu-plate.jpg" width="1000" height="667" alt="目玉焼きと野菜のひのきプレート" loading="lazy">
+          </figure>
+          <div class="time-body">
+            <p class="time-range">11:30 – 14:00</p>
+            <h3 class="time-title">ランチ</h3>
+            <p class="time-now" hidden>ただいまの時間</p>
+            <p>奈良の農家さんから届く野菜を中心にした、<span class="nobr">日替わり</span>のプレート。スープとドリンクつきです。</p>
+            <p class="time-item">ひのきプレート<span>1,300円</span></p>
+          </div>
+        </div>
+
+        <div class="time-row" data-slot="cafe" data-reveal>
+          <figure class="time-photo frame-photo">
+            <img src="img/menu-latte.jpg" width="1000" height="667" alt="ラテと季節のケーキ" loading="lazy">
+          </figure>
+          <div class="time-body">
+            <p class="time-range">14:00 – 17:00</p>
+            <h3 class="time-title">カフェタイム</h3>
+            <p class="time-now" hidden>ただいまの時間</p>
+            <p>毎朝焼いているパウンドケーキやプリンを、珈琲と一緒に。ケーキセットは50円引きになります。</p>
+            <p class="time-item">ケーキセット<span>1,000円〜</span></p>
+          </div>
+        </div>
+
+        <div class="center-link" data-reveal>
+          <a href="menu.html" class="btn">メニューをすべて見る</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 珈琲のこだわり -->
+    <section class="coffee">
+      <img src="img/coffee-drip.jpg" width="2000" height="1250" alt="" class="coffee-bg" loading="lazy">
+      <div class="container coffee-inner">
+        <div class="coffee-text" data-reveal>
+          <h2 class="title title--light">一杯ずつ、<br>ハンド<wbr>ドリップで。</h2>
+          <p>
+            豆は、奈良の小さな焙煎所に、お店のためだけに焼いてもらっています。ご注文を受けてから挽き、お湯の温度と時間をはかりながら、ゆっくりと落とします。
+          </p>
+          <p>深煎りのブレンド、浅煎りのシングルオリジン、カフェインレスの3種類からお選びいただけます。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 店内（セージ色の面で、ページに強弱をつける） -->
+    <section class="section space">
+      <div class="container">
+        <p class="script-label" lang="en" aria-hidden="true" data-reveal>Our Space</p>
+        <h2 class="title" data-reveal>店内の<wbr>こと</h2>
+        <div class="space-grid">
+          <figure class="space-item space-item--main" data-reveal>
+            <img src="img/space-window.jpg" width="1400" height="1867" alt="大きな窓から光が入る、植物のある明るい店内" loading="lazy">
+            <figcaption><b>光の入るテーブル席</b>大きな窓から、やわらかな光が入ります。</figcaption>
+          </figure>
+          <figure class="space-item" data-reveal>
+            <img src="img/space-entrance.jpg" width="1000" height="1250" alt="白木のテーブルと椅子、花を飾った棚" loading="lazy">
+            <figcaption><b>ひのきのテーブル</b>近くの工房に作ってもらったテーブルと椅子です。</figcaption>
+          </figure>
+          <figure class="space-item" data-reveal>
+            <img src="img/space-chair.jpg" width="1000" height="1500" alt="ガラス越しに木々が見える、窓辺の木のテーブル席" loading="lazy">
+            <figcaption><b>緑の見える窓辺の席</b>おひとりでも気兼ねなく。電源のある席が4つあります。</figcaption>
+          </figure>
+        </div>
+        <p class="space-seats" data-reveal>席数：<wbr>カウンター6席・<wbr>テーブル14席／<wbr>店内は<wbr>全席禁煙です。<wbr>入口は<wbr>段差がなく、<wbr>ベビーカーのまま<wbr>入れます。</p>
+      </div>
+    </section>
+
+    <!-- 写真の並び（インスタグラムの投稿のイメージ） -->
+    <section class="section insta" aria-labelledby="insta-title">
+      <div class="container">
+        <h2 class="title title--center insta-title" id="insta-title" lang="en" data-reveal>#cafehinoki</h2>
+        <p class="lead lead--center" data-reveal>光の入る窓辺や、<wbr>ラテアート。<wbr>写真を撮りたくなる<wbr>時間を、<wbr>ゆっくりどうぞ。</p>
+        <ul class="insta-grid" data-reveal>
+          <li><img src="img/insta-3n3mPoGko8g.jpg" width="800" height="1066" alt="光の縞が落ちるテーブルの、ラテアートのカップ" loading="lazy"></li>
+          <li><img src="img/insta-ikU3J1nr52w.jpg" width="800" height="1200" alt="上から見た、4つのラテアート" loading="lazy"></li>
+          <li><img src="img/insta-j3gz0KReZbA.jpg" width="800" height="985" alt="アボカドと卵をのせたトースト" loading="lazy"></li>
+          <li><img src="img/insta-YcbkFEPdOJ0.jpg" width="800" height="1063" alt="窓辺で湯気の立つ珈琲" loading="lazy"></li>
+          <li><img src="img/insta-7zow7-ZranQ.jpg" width="800" height="1422" alt="リーフ模様のラテアート" loading="lazy"></li>
+          <li><img src="img/insta-fIEN3ccZVMk.jpg" width="800" height="1067" alt="焼き菓子を添えたカプチーノ" loading="lazy"></li>
+        </ul>
+        <p class="insta-note" data-reveal>※投稿のイメージです（ポートフォリオ用の素材写真）。<wbr>撮影のときは、<wbr>ほかのお客さまが<wbr>写らないよう<wbr>ご配慮ください。</p>
+      </div>
+    </section>
+
+    <!-- アクセス -->
+    <section id="access" class="section access">
+      <div class="container access-inner">
+        <!-- お知らせと同じく、見出し左・内容右。ナビで来たとき、見出しがすぐ目に入るように -->
+        <div class="access-body" data-reveal>
+          <h2 class="title">アクセス・<wbr>営業時間</h2>
+          <div class="access-detail">
+            <!-- 外観は線なし。初めての方が、お店を見つけて覚えられるように -->
+            <figure class="access-photo">
+              <img src="img/access-exterior.jpg" width="1060" height="530" alt="緑に囲まれた、木の扉のCafe HINOKIの入口" loading="lazy">
+              <figcaption class="access-mark"><span class="access-mark-label">目印</span>緑に囲まれた、<wbr>木の扉の<wbr>建物です。</figcaption>
+            </figure>
+            <dl class="info">
+              <div><dt>住所</dt><dd>奈良県奈良市ひのき町1-2-3（架空）</dd></div>
+              <div><dt>電話</dt><dd>0742-00-0000（架空）</dd></div>
+              <div><dt>営業時間</dt><dd>8:00〜17:00（L.O. 16:30）</dd></div>
+              <div><dt>定休日</dt><dd>水曜日（年末年始は休業）</dd></div>
+              <div><dt>アクセス</dt><dd>近鉄奈良駅から徒歩10分／駐車場3台</dd></div>
+              <div><dt>ご予約</dt><dd>ランチのみお電話で承ります</dd></div>
+            </dl>
+            <!-- 実在のお店で使うときは、ここに Googleマップの埋め込み（iframe）を入れる -->
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- お知らせ -->
+    <section id="news" class="section news">
+      <div class="container news-inner">
+        <h2 class="title" data-reveal>お知らせ</h2>
+        <!-- 新しいお知らせは、いちばん上に <li> を1つ追加 -->
+        <ul class="news-list" data-reveal>
+          <li><time datetime="2026-10-01">2026.10.01</time><span>秋の焼き菓子「栗とほうじ茶のパウンドケーキ」を始めました。</span></li>
+          <li><time datetime="2026-09-20">2026.09.20</time><span>年末年始は12月31日〜1月3日までお休みします。</span></li>
+          <li><time datetime="2026-09-01">2026.09.01</time><span>モーニングの時間を8:00〜11:00に変更しました。</span></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-logo">Cafe&ensp;HINOKI</p>
+      <p class="footer-info">奈良県<wbr>奈良市<wbr>ひのき町1-2-3（架空）<br>8:00〜17:00／<wbr>水曜定休</p>
+      <ul class="footer-nav">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="menu.html">MENU</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#access">ACCESS</a></li>
+        <li><a href="#news">NEWS</a></li>
+      </ul>
+      <p class="footer-note">※ポートフォリオ用に制作した架空の店舗です。店名・住所・料金はすべて架空です。</p>
+      <p class="footer-copy"><small>&copy; <span data-year>2026</span> Cafe HINOKI</small></p>
+    </div>
+  </footer>
+
+  <!-- ページの上へ戻るボタン（少しスクロールすると表示） -->
+  <a href="#top" class="to-top" data-to-top>
+    <span class="to-top-arrow" aria-hidden="true"></span>
+    <span class="visually-hidden">ページの</span>上へ<span class="visually-hidden">戻る</span>
+  </a>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+ネットから読み込んでいた素材を、オフラインでも表示できるようにこのフォルダへ保存したもの
+feature-cockpit.jpg     https://images.unsplash.com/photo-1500148620689-33c1f7ef01d6 （Unsplash・車検ページの代車の写真）
+factory-tour.mp4        店舗で撮影した工場の動画（960×540・音声なし。車のナンバーが映る手前で終了）
+
+店舗の写真（hero-*, flow-lounge, sales-lineup, gallery-*, banner-factory, service-hands, sub-hero-*, estimate-lounge, svc-*, store-*, site-*, connect-entrance, option-*, factory-tour-poster）
+  株式会社山口自動車.で撮影した実際の写真。車のナンバープレートはぼかし加工済み。

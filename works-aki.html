@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="WebデザイナーE.T. ポートフォリオ">
+  <meta property="og:description" content="E.T.のポートフォリオサイトです。">
+  <meta property="og:image" content="img/ogp.png">
+  <meta name="description" content="E.T.のポートフォリオサイトです" />
+  <title>E.T. ポートフォリオ</title>
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="img/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link href="css/ress.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="css/style.css" media="all" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+  <div class="wrapper">
+
+    <!-- header -->
+    <header class="header ">
+      <div class="header-inner">
+        <h1 class="header-logo">
+          <a href="index.html">E.T. DESIGN</a>
+        </h1>
+        <nav class="header-nav">
+          <ul class="header-nav-list">
+            <li class="header-nav-item"><a href="index.html#works">WORKS</a></li>
+            <li class="header-nav-item"><a href="index.html#skill">SKILL</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- /header -->
+
+    <main class="content">
+
+      <article class="article">
+        <div class="article-inner">
+          <h2 class="article-title">インコカフェ AKI</h2>
+          <p class="article-img">
+            <a href="works/aki/index.html" target="_blank" rel="noopener"><img src="img/aki.jpg" alt="インコカフェ AKIのトップページ"></a>
+          </p>
+          <div class="home-link" style="margin-bottom: 40px;">
+            <a href="works/aki/index.html" target="_blank" rel="noopener">サイトを見る</a>
+          </div>
+          <div class="article-body">
+            <p>
+              ※奈良の小さなインコカフェを想定した、架空の店舗サイトです（トップページ＋下層ページ5ページ）。<br>
+              店舗情報・料金は架空のもので、写真の一部は生成AIで作成したイメージです。
+            </p>
+            <h3 class="article-info-title">担当</h3>
+            <p>Design / Coding(Responsive・生成AIを活用)</p>
+            <h3 class="article-info-title">制作時間</h3>
+            <p>約1ヶ月半（職業訓練校の授業と並行して制作）</p>
+            <h3 class="article-info-title">使用ソフト・技術</h3>
+            <p>Visual Studio Code・生成AI / HTML・CSS・JavaScript<br>
+              ※デザインツールは使わず、ブラウザで表示を確かめながら HTML・CSS で直接デザインしました</p>
+            <h3 class="article-info-title">使用フォント</h3>
+            <p>Zen Maru Gothic / Fredoka</p>
+            <h3 class="article-info-title">サイトの目的</h3>
+            <p>
+              「かわいい」と感じてもらうことと、実際のお店として使いやすいことの両立を目指しました。<br>
+              インコたちの魅力を伝え、Instagram のDMからの予約につなげることを目的としています。
+            </p>
+            <h3 class="article-info-title">ターゲット</h3>
+            <p>
+              インコや動物が好きな10〜20代の女性を想定しました。<br>
+              はじめてインコカフェに行く人も、不安なく来店できるよう、料金・流れ・注意事項をていねいにまとめています。
+            </p>
+            <h3 class="article-info-title">デザインについて</h3>
+            <p>
+              看板インコ3羽の羽の色（ピンク・ミント・水色）をもとに配色しました。<br>
+              広い背景は目が疲れにくいくすみパステル、文字やボタンなど小さな部分ははっきりした色に分けています。<br>
+              文字色はこげ茶・ピンク・ミント・水色の4色にしぼり、本文は黒ではなく、やわらかく見えるこげ茶にしました。<br>
+              写真は役割ごとに形を変え（主役は楕円、並びはアーチ、ごはんは円）、セクションの区切りはレースのようなスカラップにして、手づくり感とカフェらしさを出しました。
+            </p>
+            <h3 class="article-info-title">見やすさ（UI/UX・アクセシビリティ）</h3>
+            <p>
+              文字はPCで16px以上・スマートフォンで14px以上にし、本文と背景のコントラストは 7:1 以上にしています。<br>
+              ボタンはタップしやすい44px以上にし、キーボード操作や読み上げソフト、動きが苦手な方の設定にも対応しました。<br>
+              スマートフォンでは、6羽の看板インコを横にスワイプして見られるようにし、ページが縦に長くなりすぎないようにしています。<br>
+              「ソー／ダ」のような単語の途中での改行を防ぎ、ナビで移動したときの見出しの位置や、セクションごとの余白もそろえました。
+            </p>
+            <h3 class="article-info-title">コーディングについて</h3>
+            <p>
+              デザインをもとに、生成AIを活用してコーディングしました。<br>
+              AIが出力したコードはそのまま使わず、ブラウザで1か所ずつ表示を確認しながら修正・調整しています。<br>
+              今日の営業状況（祝日対応）や日替わりランチの自動表示、DM文面のコピー、写真の拡大表示、看板インコのスワイプなどをJavaScriptで実装しました。<br>
+              納品後も更新しやすいよう、色はCSS変数にまとめ、料金・お知らせ・営業時間の直し方をREADMEに書いています。
+            </p>
+            <h3 class="article-info-title">品質の確認</h3>
+            <p>
+              全6ページを、320〜1920pxの画面幅で確認しました。<br>
+              横のはみ出し、文字の大きさ、コントラスト、タップできる範囲は、ブラウザ上で動かすスクリプトで自動的に測っています。<br>
+              色の見え方が異なる方の見え方も再現し、色だけに頼らず文字や形でも区別できることを確かめました。
+            </p>
+            <h3 class="article-info-title">SEO対策</h3>
+            <p>
+              ページごとの title・description・OGP と、トップページに店舗情報の構造化データ（JSON-LD）を設定しました。<br>
+              見出しの階層、画像のalt属性、画像サイズの指定と遅延読み込みにも配慮しています。
+            </p>
+            <h3 class="article-info-title">講評を受けての修正</h3>
+            <p>
+              訓練校の先生から、影や重なりの向きがばらばらだと指摘を受けました。<br>
+              光は左上から当たる設定に決め、写真のうしろの色・影・重なりをすべて右下にそろえて、サイト全体の統一感を出しました。
+            </p>
+          </div>
+          <p class="related-work">関連作品：<a href="works-samune.html">アキクサインコ YouTubeサムネイル（看板インコ「AKI」のチャンネル）</a></p>
+          <div class="home-link">
+            <a href="index.html#works">Works一覧へ</a>
+          </div>
+        </div>
+      </article>
+
+      <a href="#" class="page-top" id="js-page-top"><span class="page-top-arrow" aria-hidden="true"></span><span class="visually-hidden">ページの上へ戻る</span></a>
+    </main>
+
+    <!-- footer -->
+    <footer class="footer">
+      <div class="copyright">&copy;E.T.</div>
+    </footer>
+    <!-- /footer -->
+
+  </div>
+  <script src="js/jquery-3.5.1.min.js"></script>
+  <script type="text/javascript" src="js/script.js"></script>
+</body>
+
+</html>

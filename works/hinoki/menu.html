@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>メニュー｜Cafe HINOKI（奈良のひのきのカフェ）</title>
+  <meta name="description" content="Cafe HINOKIのメニュー。ハンドドリップの珈琲、奈良のお茶、モーニング（8:00〜11:00）、日替わりランチ、毎朝焼く焼き菓子。※ポートフォリオ用の架空の店舗です。">
+  <meta name="theme-color" content="#f7f3ec">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Cafe HINOKI">
+  <meta property="og:title" content="メニュー｜Cafe HINOKI">
+  <meta property="og:description" content="ハンドドリップの珈琲、モーニング、日替わりランチ、焼き菓子。">
+  <meta property="og:image" content="img/coffee-drip.jpg">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="fonts/allura/v23/9oRPNYsQpS4zjuA_iwgWHNn7GQ.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/cormorantgaramond/v21/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYqXtKky2F7g.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- 「上へ」ボタンの戻り先（キーボード操作もここから再開する） -->
+  <span id="top" tabindex="-1"></span>
+  <a href="#main" class="skip-link">本文へスキップ</a>
+
+  <header class="header">
+    <div class="header-inner">
+      <p class="logo"><a href="index.html" aria-label="Cafe HINOKI トップへ">Cafe&ensp;HINOKI</a></p>
+      <button type="button" class="menu-btn" aria-expanded="false" aria-controls="site-nav">
+        <span class="menu-btn-line" aria-hidden="true"></span>
+        <span class="visually-hidden">メニューを開く</span>
+      </button>
+      <nav id="site-nav" class="nav" aria-label="サイト内">
+        <ul class="nav-list nav-list--left">
+          <li><a href="index.html">HOME</a></li>
+          <li><a href="menu.html" aria-current="page">MENU</a></li>
+        </ul>
+        <ul class="nav-list nav-list--right">
+          <li><a href="index.html#about">ABOUT</a></li>
+          <li><a href="index.html#access">ACCESS</a></li>
+          <li><a href="index.html#news">NEWS</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="page-head">
+      <img src="img/coffee-drip.jpg" width="2000" height="1250" alt="" fetchpriority="high">
+      <div class="page-head-text">
+        <p class="page-head-en" lang="en" aria-hidden="true">Menu</p>
+        <h1>メニュー</h1>
+      </div>
+    </div>
+
+    <!-- 現在地（パンくずリスト） -->
+    <nav class="breadcrumb" aria-label="現在地">
+      <ol>
+        <li><a href="index.html">HOME</a></li>
+        <li><span aria-current="page">メニュー</span></li>
+      </ol>
+    </nav>
+
+    <nav class="menu-jump" aria-label="メニューの種類">
+      <a href="#coffee">珈琲</a>
+      <a href="#tea">お茶・そのほか</a>
+      <a href="#morning">モーニング</a>
+      <a href="#lunch">ランチ</a>
+      <a href="#sweets">甘いもの</a>
+    </nav>
+
+    <div class="section">
+      <div class="container">
+
+        <!-- メニューを増やすときは <li> を1つコピーして、名前・説明・価格を書きかえる -->
+        <section id="coffee" class="menu-block" data-reveal>
+          <div>
+            <h2 class="title">珈琲</h2>
+            <p class="menu-note">ご注文を受けてから豆を挽き、一杯ずつハンドドリップで淹れます。</p>
+            <ul class="menu-list">
+              <li><p class="menu-line"><span class="menu-name">ひのき<wbr>ブレンド<wbr>（深煎り）</span><span class="menu-price">550円</span></p><p class="menu-desc">苦みとコクのある、いちばん人気の一杯。</p></li>
+              <li><p class="menu-line"><span class="menu-name">本日の<wbr>シングル<wbr>オリジン<wbr>（浅煎り）</span><span class="menu-price">600円</span></p><p class="menu-desc">果実のような香り。豆は月ごとに変わります。</p></li>
+              <li><p class="menu-line"><span class="menu-name">カフェインレス</span><span class="menu-price">550円</span></p></li>
+              <li><p class="menu-line"><span class="menu-name">カフェオレ／<wbr>ラテ</span><span class="menu-price">600円</span></p></li>
+              <li><p class="menu-line"><span class="menu-name">アイス<wbr>コーヒー</span><span class="menu-price">550円</span></p></li>
+            </ul>
+          </div>
+          <figure class="menu-photo frame-photo">
+            <img src="img/menu-latte.jpg" width="1000" height="667" alt="ラテと季節のケーキ" loading="lazy">
+          </figure>
+        </section>
+
+        <section id="tea" class="menu-block menu-block--text" data-reveal>
+          <div>
+            <h2 class="title">お茶・そのほか</h2>
+            <p class="menu-note">奈良県でつくられたお茶を中心にご用意しています。</p>
+            <ul class="menu-list">
+              <li><p class="menu-line"><span class="menu-name">大和<wbr>ほうじ茶</span><span class="menu-price">500円</span></p></li>
+              <li><p class="menu-line"><span class="menu-name">奈良の<wbr>和紅茶</span><span class="menu-price">550円</span></p></li>
+              <li><p class="menu-line"><span class="menu-name">季節の<wbr>ジュース</span><span class="menu-price">600円</span></p></li>
+              <li><p class="menu-line"><span class="menu-name">ミルク<wbr>（お子さま向け）</span><span class="menu-price">300円</span></p></li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="morning" class="menu-block" data-reveal>
+          <div>
+            <h2 class="title">モーニング</h2>
+            <p class="menu-note">8:00〜11:00。ドリンクと一緒にご注文ください。</p>
+            <ul class="menu-list">
+              <li><p class="menu-line"><span class="menu-name">トースト<wbr>セット</span><span class="menu-price">ドリンク代＋150円</span></p><p class="menu-desc">厚切りトースト（自家製ジャム・バター）、ゆで卵。</p></li>
+              <li><p class="menu-line"><span class="menu-name">あんバター<wbr>トースト</span><span class="menu-price">ドリンク代＋300円</span></p></li>
+              <li><p class="menu-line"><span class="menu-name">モーニング<wbr>プレート</span><span class="menu-price">950円</span></p><p class="menu-desc">トースト、サラダ、目玉焼き、ドリンクつき。</p></li>
+            </ul>
+          </div>
+          <figure class="menu-photo frame-photo">
+            <img src="img/menu-toast.jpg" width="1000" height="740" alt="厚切りトーストと珈琲のモーニング" loading="lazy">
+          </figure>
+        </section>
+
+        <section id="lunch" class="menu-block" data-reveal>
+          <div>
+            <h2 class="title">ランチ</h2>
+            <p class="menu-note">11:30〜14:00。なくなり次第終了です。ご予約はお電話で承ります。</p>
+            <ul class="menu-list">
+              <li><p class="menu-line"><span class="menu-name">ひのき<wbr>プレート</span><span class="menu-price">1,300円</span></p><p class="menu-desc">奈良の野菜を中心にした日替わりのプレート。スープ・ドリンクつき。</p></li>
+              <li><p class="menu-line"><span class="menu-name">季節の<wbr>サンドイッチ<wbr>セット</span><span class="menu-price">1,100円</span></p><p class="menu-desc">スープ・ドリンクつき。</p></li>
+            </ul>
+          </div>
+          <figure class="menu-photo frame-photo">
+            <img src="img/menu-plate.jpg" width="1000" height="667" alt="目玉焼きと野菜のひのきプレート" loading="lazy">
+          </figure>
+        </section>
+
+        <section id="sweets" class="menu-block" data-reveal>
+          <div>
+            <h2 class="title">甘いもの</h2>
+            <p class="menu-note">毎朝お店で焼いています。ドリンクとセットで50円引きになります。</p>
+            <ul class="menu-list">
+              <li><p class="menu-line"><span class="menu-name">パウンド<wbr>ケーキ</span><span class="menu-price">500円</span></p><p class="menu-desc">プレーン・レモン・ほうじ茶の3種類から。</p></li>
+              <li><p class="menu-line"><span class="menu-name">栗と<wbr>ほうじ茶の<wbr>パウンド<wbr>ケーキ<wbr>（秋限定）</span><span class="menu-price">550円</span></p></li>
+              <li><p class="menu-line"><span class="menu-name">かための<wbr>プリン<span class="menu-badge">看板メニュー</span></span><span class="menu-price">450円</span></p><p class="menu-desc">毎朝焼く、いちばん人気のプリン。1日20個まで。</p></li>
+            </ul>
+          </div>
+          <figure class="menu-photo frame-photo">
+            <img src="img/menu-cake.jpg" width="1000" height="667" alt="パウンドケーキと珈琲" loading="lazy">
+          </figure>
+        </section>
+
+        <div class="menu-foot" data-reveal>
+          <ul>
+            <li>価格はすべて税込です。</li>
+            <li>アレルギーのある方は、ご注文の前にお知らせください。</li>
+            <li>焼き菓子と珈琲豆は、お持ち帰りもできます。</li>
+            <li>メニューは季節によって変わることがあります。</li>
+          </ul>
+        </div>
+
+        <div class="center-link center-link--pair">
+          <a href="index.html#access" class="btn">アクセス・営業時間を見る</a>
+          <a href="index.html" class="btn btn--back">トップページへ戻る</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-logo">Cafe&ensp;HINOKI</p>
+      <p class="footer-info">奈良県<wbr>奈良市<wbr>ひのき町1-2-3（架空）<br>8:00〜17:00／<wbr>水曜定休</p>
+      <ul class="footer-nav">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="menu.html">MENU</a></li>
+        <li><a href="index.html#about">ABOUT</a></li>
+        <li><a href="index.html#access">ACCESS</a></li>
+        <li><a href="index.html#news">NEWS</a></li>
+      </ul>
+      <p class="footer-note">※ポートフォリオ用に制作した架空の店舗です。店名・住所・料金はすべて架空です。</p>
+      <p class="footer-copy"><small>&copy; <span data-year>2026</span> Cafe HINOKI</small></p>
+    </div>
+  </footer>
+
+  <!-- ページの上へ戻るボタン（少しスクロールすると表示） -->
+  <a href="#top" class="to-top" data-to-top>
+    <span class="to-top-arrow" aria-hidden="true"></span>
+    <span class="visually-hidden">ページの</span>上へ<span class="visually-hidden">戻る</span>
+  </a>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
