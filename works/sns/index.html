@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SNS動画ポートフォリオ｜E.T. DESIGN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* layout: 左に縦書きの見出し帯、右に本文。スマホでは1列に積む */
+  --paper:#f6f3ee;      /* 生成りの紙 */
+  --ink:#2b2522;        /* こげ茶の文字 */
+  --muted:#6f655e;      /* 補足の文字 */
+  --line:#d9d1c7;       /* 罫線 */
+  --accent:#7a2e3a;     /* ボルドー（衣装の差し色から） */
+  --card:#fffdfa;
+  --display:"Noto Serif JP","Hiragino Mincho ProN","Yu Mincho",serif;
+  --body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",sans-serif;
+  --latin:"Cormorant Garamond","Times New Roman",serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.85;letter-spacing:.02em}
+img,video{max-width:100%;display:block}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header.site{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid var(--line)}
+header.site .name{font-family:var(--display);font-weight:600;font-size:18px;letter-spacing:.12em}
+header.site nav{display:flex;gap:18px;flex-wrap:wrap;font-size:13px}
+header.site nav a{color:var(--muted);text-decoration:none}
+header.site nav a:hover{color:var(--accent)}
+
+.hero{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;padding:64px 0 48px}
+.hero h1{font-family:var(--display);font-weight:600;font-size:clamp(30px,5vw,52px);line-height:1.45;margin:0 0 18px;text-wrap:balance}
+.hero p{max-width:34em;color:var(--muted);margin:0}
+.eyebrow{font-family:var(--latin);font-style:italic;font-size:20px;color:var(--accent);margin:0 0 6px}
+.tate{writing-mode:vertical-rl;font-family:var(--display);font-size:15px;letter-spacing:.3em;color:var(--muted);border-left:1px solid var(--line);padding-left:14px;height:220px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;padding:0;list-style:none}
+.chips li{border:1px solid var(--line);background:var(--card);padding:2px 12px;font-size:13px}
+
+section{padding:56px 0;border-top:1px solid var(--line)}
+.sec{display:grid;grid-template-columns:72px 1fr;gap:28px}
+.sec>div,.work>div,.tool>div{min-width:0}
+.sec-label{writing-mode:vertical-rl;font-family:var(--display);font-size:22px;font-weight:600;letter-spacing:.25em;margin:0}
+.sec-label span{font-family:var(--latin);font-style:italic;font-weight:500;font-size:15px;letter-spacing:.08em;color:var(--accent);margin-top:12px}
+h2.lead{font-family:var(--display);font-weight:600;font-size:clamp(22px,3vw,30px);line-height:1.5;margin:0 0 18px;text-wrap:balance}
+h3{font-family:var(--display);font-weight:600;font-size:18px;margin:0 0 8px}
+
+.work{display:grid;grid-template-columns:minmax(0,320px) 1fr;gap:36px;align-items:start}
+.phone{border:1px solid var(--line);background:#000;aspect-ratio:9/16;width:100%}
+.phone video{width:100%;height:100%;object-fit:cover}
+dl.spec{display:grid;grid-template-columns:7em 1fr;gap:10px 16px;margin:0}
+dl.spec dt{color:var(--muted);font-size:14px}
+dl.spec dd{margin:0}
+.note{font-size:13px;color:var(--muted);margin-top:16px}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:0;margin:0;list-style:none;counter-reset:v}
+.steps li{background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column}
+.steps img{aspect-ratio:9/16;object-fit:cover;width:100%}
+.steps .cap{padding:12px 14px;font-size:14px;line-height:1.7}
+.steps .ver{font-family:var(--latin);font-style:italic;font-size:18px;color:var(--accent);display:block}
+
+.chart{background:var(--card);border:1px solid var(--line);padding:20px 20px 12px;overflow-x:auto}
+.chart svg{min-width:560px;width:100%;height:auto}
+.find{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px;padding:0;list-style:none}
+.find li{border-top:2px solid var(--ink);padding-top:10px;font-size:14px}
+.find b{display:block;font-family:var(--display);font-size:16px;margin-bottom:4px}
+
+.tool{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:start}
+.tool img{border:1px solid var(--line)}
+.tool ul{padding-left:1.2em;margin:10px 0 0}
+
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.skills div{background:var(--card);border:1px solid var(--line);padding:16px 18px}
+.skills p{margin:0;font-size:14px;color:var(--muted)}
+
+footer{border-top:1px solid var(--line);padding:28px 0 48px;font-size:13px;color:var(--muted)}
+
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr;padding:40px 0 32px}
+  .tate{display:none}
+  .sec{grid-template-columns:1fr;gap:14px}
+  .sec-label{writing-mode:horizontal-tb;font-size:20px;letter-spacing:.12em}
+  .sec-label span{margin:0 0 0 10px}
+  .work,.tool{grid-template-columns:1fr}
+  .phone{max-width:300px;margin:0 auto}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .find,.skills{grid-template-columns:1fr}
+  dl.spec{grid-template-columns:1fr;gap:2px}
+  dl.spec dd{margin-bottom:10px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="site">
+    <a class="name" href="../../index.html" style="color:inherit;text-decoration:none">E.T. DESIGN</a>
+    <nav aria-label="ページ内リンク">
+      <a href="#work">作品</a><a href="#process">改善の流れ</a><a href="#analysis">分析</a><a href="#tool">自作ツール</a><a href="#skills">スキル</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div>
+      <p class="eyebrow">SNS Video Portfolio</p>
+      <h1>大人の女性に届く、<br>服の動画を。</h1>
+      <p>スマートフォンでの撮影から、企画・編集・投稿まで。人気アカウントの数字を分析し、伸びる型と自分ならではの目線を組み合わせて、きれいめ大人カジュアルのリールを作っています。</p>
+      <ul class="chips" aria-label="主なツール">
+        <li>CapCut</li><li>Instagram リール</li><li>Photoshop</li><li>Illustrator</li><li>Premiere Pro（学習中）</li><li>Claude（AI）</li>
+      </ul>
+    </div>
+    <p class="tate" aria-hidden="true">企画　撮影　編集　分析</p>
+  </div>
+
+  <section id="work" class="sec">
+    <h2 class="sec-label">作品<span>Works</span></h2>
+    <div>
+      <h2 class="lead">体型に悩む大人の女性へ。<br>カーブパンツの商品紹介リール</h2>
+      <div class="work">
+        <div class="phone">
+          <video src="assets/reel.mp4" poster="assets/poster.jpg" controls playsinline preload="metadata" aria-label="カーブパンツの商品紹介リール（約20秒）"></video>
+        </div>
+        <div>
+          <dl class="spec">
+            <dt>目的</dt><dd>腰まわりや脚のラインが気になる大人の女性に、カーブパンツの良さを伝える</dd>
+            <dt>想定</dt><dd>きれいめ大人女性向けブランドの公式アカウント（Re:EDITを想定した試作）</dd>
+            <dt>構成</dt><dd>悩みのひと言 → いつものパンツとの比較 → 形・しゃがんだ姿・落ち感・横姿 → コーデ → コメントの呼びかけ</dd>
+            <dt>工夫</dt><dd>冒頭は動く映像で目を止める／身長158cm・Lサイズを表示／縦書きと英字で上品に／顔は映さず服に集中</dd>
+            <dt>担当</dt><dd>企画・撮影・構成：本人　編集：AI（Claude）を活用</dd>
+            <dt>仕様</dt><dd>縦型 1080×1920　約20秒　BGMはオリジナル</dd>
+          </dl>
+          <p class="note">着用モデル・撮影も本人です。ブランドのロゴや値札は映さないようにしています。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="sec">
+    <h2 class="sec-label">改善の流れ<span>Process</span></h2>
+    <div>
+      <h2 class="lead">1本を、4回見直しました。</h2>
+      <p>「どうすれば届くか」を毎回ふり返り、撮り直しと編集を重ねました。</p>
+      <ol class="steps">
+        <li><img src="assets/v1.jpg" alt="最初の版。写真を並べた着回し動画"><p class="cap"><span class="ver">v1</span>写真で2コーデ。人の動きが少なく、良さが伝わりにくかった</p></li>
+        <li><img src="assets/v2.jpg" alt="2つ目の版。生地のカーブを指でなぞるアップ"><p class="cap"><span class="ver">v2</span>商品紹介型に変更。形・生地・ポケットをアップで見せた</p></li>
+        <li><img src="assets/v4b.jpg" alt="比較の場面。いつものパンツからカーブパンツへ"><p class="cap"><span class="ver">v3</span>悩みの言葉と、いつものパンツとの比較を追加</p></li>
+        <li><img src="assets/v4a.jpg" alt="しゃがんだ姿に縦書きの文字と身長・サイズの表示"><p class="cap"><span class="ver">v4</span>身長・サイズを表示し、縦書きと英字で文字を整えた</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="analysis" class="sec">
+    <h2 class="sec-label">分析<span>Research</span></h2>
+    <div>
+      <h2 class="lead">12アカウントを比べると、<br>「人が出る投稿」ほど見られていました。</h2>
+      <div class="chart" role="img" aria-label="リールの再生数（中央値）÷フォロワー数。個人アカウントが49〜138%、ブランド公式は5〜50%">
+        <svg id="ratio" viewBox="0 0 760 420"></svg>
+      </div>
+      <p class="note">2026年11月20日にInstagramの表示を確認。直近12本のリール再生数の中央値 ÷ フォロワー数。再生数は「〇万」表示のため概数です。</p>
+      <ul class="find">
+        <li><b>人が出る</b>着ている人の動きや声がある投稿ほど、フォロワー以外にも届く</li>
+        <li><b>短く、数字で約束</b>15秒前後。「1着で5コーデ」のように最初に数を見せる</li>
+        <li><b>問いかける</b>最後に「どれが好き？」と聞くと、コメントが集まる</li>
+      </ul>
+      <p class="note">分析をもとにした改善提案書（2ページ）もあります。面接でお見せできます。</p>
+    </div>
+  </section>
+
+  <section id="tool" class="sec">
+    <h2 class="sec-label">自作ツール<span>Tool</span></h2>
+    <div class="tool">
+      <img src="assets/sakusaku.jpg" alt="自作の動画編集ツール「動画編集サクサク」の画面。構成テンプレートとテーマの一覧">
+      <div>
+        <h2 class="lead">動画編集サクサク</h2>
+        <p>AI（Claude Code）を使って作った、ブラウザで動く動画編集ツールです。毎日の投稿を早く、同じ品質で作るために作りました。</p>
+        <ul>
+          <li>分析から作った投稿の型（着回し・1週間コーデ・ビフォーアフターなど）7種のテンプレート</li>
+          <li>テロップの自動配置、無音カット、縦長・横長の書き出し</li>
+          <li>アパレル向けの上品なテーマ</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="sec">
+    <h2 class="sec-label">スキル<span>Skills</span></h2>
+    <div class="skills">
+      <div><h3>動画・SNS</h3><p>スマートフォン撮影、CapCut・Editsでの編集、Instagramリールの企画と投稿。個人アカウントでリールの再生数はフォロワー数の約60%</p></div>
+      <div><h3>画像・デザイン</h3><p>Photoshopでの商品画像加工、Illustrator、Webデザイン（職業訓練 Webクリエイター実践科 修了）</p></div>
+      <div><h3>事務・AI</h3><p>Excel・Wordでの資料作成と数字のまとめ。Claudeを使った制作の効率化</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <p><a href="../../index.html">E.T. DESIGN ポートフォリオのトップへ</a></p>
+    <p>© E.T.　掲載の動画・画像の無断転載はご遠慮ください。</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var data=[["あおいさん（個人）",138,1],["せこ子さん（スタッフ）",78,1],["SHIPS WOMEN",50,0],["武藤さん（スタッフ）",49,1],["23区",24,0],["IÉNA",22,0],["PLST",21,0],["Oggi編集部",17,0],["Spick & Span",16,0],["Re:EDIT",8,2],["titivate",6,0],["ROPÉ",5,0]];
+  var cs=getComputedStyle(document.documentElement);
+  var ink=cs.getPropertyValue('--ink').trim(), mut=cs.getPropertyValue('--muted').trim(), acc=cs.getPropertyValue('--accent').trim(), line=cs.getPropertyValue('--line').trim();
+  var svg=document.getElementById('ratio'), ns='http://www.w3.org/2000/svg';
+  var left=170, w=500, max=140, rh=32, y0=20;
+  function el(n,a,t){var e=document.createElementNS(ns,n);for(var k in a)e.setAttribute(k,a[k]);if(t!=null)e.textContent=t;svg.appendChild(e);return e;}
+  [0,50,100].forEach(function(v){var x=left+v/max*w;el('line',{x1:x,x2:x,y1:y0-6,y2:y0+data.length*rh,stroke:line,'stroke-width':1});el('text',{x:x,y:y0+data.length*rh+18,'text-anchor':'middle','font-size':12,fill:mut},v+'%');});
+  data.forEach(function(d,i){
+    var y=y0+i*rh, bw=d[1]/max*w, col=d[2]===2?acc:(d[2]===1?ink:'#b9ada2');
+    el('text',{x:left-12,y:y+19,'text-anchor':'end','font-size':14,fill:d[2]===2?acc:ink,'font-weight':d[2]===2?700:400},d[0]);
+    el('rect',{x:left,y:y+6,width:bw,height:rh-12,fill:col});
+    el('text',{x:left+bw+8,y:y+19,'font-size':13,fill:d[2]===2?acc:mut,'font-weight':d[2]===2?700:400},d[1]+'%');
+  });
+  el('text',{x:left,y:y0+data.length*rh+40,'font-size':12,fill:mut},'濃い色＝人が出る個人アカウント　赤＝Re:EDIT公式　薄い色＝ブランド・雑誌');
+})();
+</script>
+</body>
+</html>
